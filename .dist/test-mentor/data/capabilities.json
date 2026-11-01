@@ -1,0 +1,70 @@
+{
+  "version": "2.0",
+  "model": "AI 测试五层能力模型",
+  "source": "2026 测试人 AI 驯化技能树 + 大厂 AI 测试 JD 的高频要求（MCP 协议、Skill 封装、Agent 评测）",
+  "layers": [
+    {
+      "key": "prompt",
+      "name": "Prompt 工程",
+      "weight": 0.2,
+      "questionBank": "prompt",
+      "desc": "把测试意图写成可复现指令：输入约束、判定标准、输出结构、自检规则",
+      "observable": "同一份 Prompt 多次运行输出结构一致、可判定"
+    },
+    {
+      "key": "agent",
+      "name": "Agent 理解",
+      "weight": 0.2,
+      "questionBank": "agent",
+      "desc": "理解规划—行动—观察循环、工具调用、上下文管理与终止条件",
+      "observable": "能画出 Agent 轨迹并解释每一步为什么这么走"
+    },
+    {
+      "key": "skill",
+      "name": "Skill 封装",
+      "weight": 0.25,
+      "questionBank": "skill",
+      "desc": "把能力封装成可分发单元：条件式触发描述、渐进式披露、脚本与文档分工",
+      "observable": "别人装了这个 Skill 不看你解释也能触发并跑对"
+    },
+    {
+      "key": "mcp",
+      "name": "MCP 协议",
+      "weight": 0.15,
+      "questionBank": "mcp",
+      "desc": "理解 tools/resources/prompts 原语，能配置、排查、自检 MCP Server",
+      "observable": "能定位 MCP 调用失败发生在连接、握手还是工具执行层"
+    },
+    {
+      "key": "specialty",
+      "name": "AI 测试专项",
+      "weight": 0.2,
+      "questionBank": "specialty",
+      "desc": "非确定性系统的测试设计：评测集、阈值判定、幻觉与注入、Agent 轨迹测试",
+      "observable": "能给生成式功能写出可判定的预期结果与回归基线"
+    }
+  ],
+  "infra": {
+    "key": "infra",
+    "name": "基础设施层",
+    "weight": 0,
+    "questionBank": "infra",
+    "desc": "原 72 道 Linux 题降级而来，作为前置检查：日志、进程、端口、资源四项基本功",
+    "role": "前置项，不计入五层雷达；不达标时在报告顶部提示先补基础"
+  },
+  "levels": [
+    { "min": 85, "code": "L4", "label": "可交付", "hint": "能独立交付 Agent/Skill 质量方案，可对外分享" },
+    { "min": 70, "code": "L3", "label": "实战期", "hint": "能独立完成封装与排障，需补最短板" },
+    { "min": 40, "code": "L2", "label": "上手机", "hint": "会跑通流程，缺工程判断与稳定性设计" },
+    { "min": 0, "code": "L1", "label": "起步期", "hint": "概念已有，动手与工程化尚未形成" }
+  ],
+  "thresholds": {
+    "weak": 40,
+    "solid": 70
+  },
+  "sampling": {
+    "defaultPerLayer": 6,
+    "minPerLayer": 3,
+    "infraDefault": 4
+  }
+}

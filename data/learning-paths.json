@@ -1,0 +1,207 @@
+{
+  "version": "2.0",
+  "note": "按层级分数取 band：low < 40，mid 40–69，high ≥ 70。资源只给名称与官方入口，不给易失效的深链。",
+  "paths": {
+    "prompt": {
+      "low": {
+        "focus": "先让输出可复现：把「请详细」换成约束与判定标准",
+        "actions": [
+          "挑一个现有测试需求，写 3 版 Prompt，固定输入各跑 5 次，比较输出结构是否一致",
+          "把用例输出结构固化成字段清单：编号/标题/步骤/数据/预期/优先级/方法",
+          "给生成结果加一段自检清单：负例占比、边界三位置、一步一操作，要求输出计数"
+        ],
+        "resources": [
+          "OpenAI Prompt Engineering 指南",
+          "Anthropic Prompt Engineering 文档",
+          "本仓库 examples/cases-audit.json（反面样例，可直接拿来练评审）"
+        ]
+      },
+      "mid": {
+        "focus": "从「能生成」走到「能约束」：输出稳定性与失败兜底",
+        "actions": [
+          "为同一任务准备 normal / boundary / error 三类 few-shot 各一条",
+          "给模型加「字段缺失标待确认」规则，统计一周内编造字段的次数变化",
+          "把 Prompt 的输出约束写成 JSON Schema，用脚本校验而不是人眼检查"
+        ],
+        "resources": [
+          "JSON Schema 官方文档",
+          "OpenAI Structured Outputs 文档",
+          "本仓库 scripts/case-gate.js（把输出送进门禁）"
+        ]
+      },
+      "high": {
+        "focus": "把 Prompt 沉淀成团队资产：版本、回归、可移植",
+        "actions": [
+          "给核心 Prompt 建版本记录与固定回归输入，改一次跑一次",
+          "把跨引擎（两个模型）差异样本收进回归集",
+          "输出一份团队可用的 Prompt 编写规范，含反例"
+        ],
+        "resources": [
+          "skill-up 评测框架（YAML 定义用例、多引擎验证）",
+          "本仓库 versions/xiaohongshu/SKILL.md（无脚本的 Prompt 化写法参考）"
+        ]
+      }
+    },
+    "agent": {
+      "low": {
+        "focus": "先看懂一条 Agent 轨迹，再谈测试",
+        "actions": [
+          "找一个开源 Agent 示例，完整跑一次任务并记录每步的推理、工具、返回",
+          "写出该 Agent 的终止条件：什么情况下它应该停",
+          "给工具描述补上「何时用/何时不用」两句话"
+        ],
+        "resources": [
+          "ReAct 论文（Reason + Act）",
+          "华为云 AgentArts 产品文档",
+          "LangGraph 官方文档"
+        ]
+      },
+      "mid": {
+        "focus": "从「能跑」到「可控」：终止条件、上下文、工具契约",
+        "actions": [
+          "给 Agent 加最大步数、预算、超时三层限制，故意构造超限场景验证",
+          "给每个工具参数加 schema 校验，把错误回传给模型而不是抛异常",
+          "用 5 条固定任务比较改动前后的工具调用次数与结果"
+        ],
+        "resources": [
+          "本仓库 scripts/agent-diag.js（loop 模式检测死循环）",
+          "OpenAI Function Calling 文档",
+          "Anthropic Building effective agents 指南"
+        ]
+      },
+      "high": {
+        "focus": "把 Agent 行为纳入回归：轨迹可比较、退化可发现",
+        "actions": [
+          "建 10 条任务回归集，记录结果 + 轨迹 + 步数三项基线",
+          "对轨迹做归一化后比对，把差异归类为工具选错、参数错、循环、提前终止",
+          "把高频失败模式写进缺陷模式库，供下一轮复用"
+        ],
+        "resources": [
+          "华为云 AgentArts 全链路观测能力",
+          "本仓库 data/defect-patterns.json（缺陷模式库）"
+        ]
+      }
+    },
+    "skill": {
+      "low": {
+        "focus": "把一段 Prompt 变成别人能装、能触发的 Skill",
+        "actions": [
+          "把一个 200 行 Prompt 拆成 SKILL.md（路由与硬约束）+ references（细节）",
+          "写 5 条条件式触发描述，用真实用户口吻各测一次是否触发",
+          "给 Skill 配一个可执行脚本，把「判分/校验」交给脚本"
+        ],
+        "resources": [
+          "Agent Skills 规范（Anthropic / Qoder 官方文档）",
+          "本仓库 SKILL.md 的分支入口写法",
+          "小红书《Skill 上传规范》（格式与合规约束）"
+        ]
+      },
+      "mid": {
+        "focus": "从「能触发」到「可维护」：单一职责与渐进式披露",
+        "actions": [
+          "检查描述里有没有「xx 助手」这类泛称，改成具体场景 + 用户原话关键词",
+          "把超过 500 行的 SKILL.md 拆分，主文件只留路由、硬约束与命令",
+          "给 Skill 加一条回归用例，版本升级前后各跑一次"
+        ],
+        "resources": [
+          "本仓库 scripts/case-gate.js 与 scripts/diagnose.js（脚本与模型分工示例）",
+          "skill-up 评测框架",
+          "鸿蒙 DFX Skills 三件套架构说明（结构参考）"
+        ]
+      },
+      "high": {
+        "focus": "把 Skill 当产品运营：版本、边界、评测",
+        "actions": [
+          "整理一页能力边界声明：做什么、不做什么、和谁互补",
+          "建 20 条 Skill 行为回归用例，覆盖触发、输出、失败兜底",
+          "写一份安装到第二个引擎的验证记录，标注差异"
+        ],
+        "resources": [
+          "华为云 AgentArts 自动化评估能力",
+          "本仓库 versions/xiaohongshu/SKILL.md（纯 Markdown 分发形态）"
+        ]
+      }
+    },
+    "mcp": {
+      "low": {
+        "focus": "先跑通一次握手与 tool 调用",
+        "actions": [
+          "用 Node 或 Python 起一个最小 stdio MCP Server，暴露一个只读工具",
+          "在客户端配置里接入，确认 tools/list 能看到它",
+          "调用一次工具，记录请求参数与返回结构"
+        ],
+        "resources": [
+          "MCP 官方文档（modelcontextprotocol.io）",
+          "huaweicloud-skills（npx 安装的官方 Skills 库）",
+          "本仓库 examples/mcp-config.json（配置样例）"
+        ]
+      },
+      "mid": {
+        "focus": "从「能连」到「能查」：分层定位失败点",
+        "actions": [
+          "用本仓库 agent-diag.js mcp 模式对本地配置做一次自检",
+          "人为制造三种故障：命令不存在、环境变量缺失、端口不通，各记录一次报错特征",
+          "给工具调用加超时与错误分类，区分连接超时与执行超时"
+        ],
+        "resources": [
+          "本仓库 scripts/agent-diag.js",
+          "MCP 官方文档 Debugging 章节",
+          "openJiuwen（MCP 接口生态）"
+        ]
+      },
+      "high": {
+        "focus": "把 MCP 接入纳入质量与安全基线",
+        "actions": [
+          "列一份 Server 清单与工具白名单，标注权限等级",
+          "检查配置中是否有明文凭据，改成环境变量并做一次泄露扫描",
+          "为关键 Server 建连通性回归，随 CI 每日跑"
+        ],
+        "resources": [
+          "华为云 AgentArts 安全沙箱能力",
+          "MCP 安全实践（官方文档 Security 章节）"
+        ]
+      }
+    },
+    "specialty": {
+      "low": {
+        "focus": "把「对不对」变成「可判定的通过率」",
+        "actions": [
+          "挑一个生成式功能，写 20 条评测样本，标注期望要点",
+          "把预期结果改写成可判定断言：必须包含 / 不得包含 / 结构合法",
+          "跑一次基线，记录通过率与失败样本"
+        ],
+        "resources": [
+          "skill-up（Agent Skill 评测与回归）",
+          "华为云 AgentArts 自动化评估能力",
+          "本仓库 examples/cases-audit.json（可判定性反面教材）"
+        ]
+      },
+      "mid": {
+        "focus": "覆盖不确定性与攻击面：幻觉、注入、一致性",
+        "actions": [
+          "构造 10 条无依据问题测幻觉，记录编造与拒答比例",
+          "构造 5 条 Prompt 注入样本，检查系统提示泄露与越权调用",
+          "同一问题重复 5 次，统计答案一致性"
+        ],
+        "resources": [
+          "OWASP Top 10 for LLM Applications",
+          "NIST AI Risk Management Framework",
+          "本仓库 data/defect-patterns.json（模型输出类缺陷模式）"
+        ]
+      },
+      "high": {
+        "focus": "把评测做成流水线：分层跑、可回滚、可解释",
+        "actions": [
+          "搭三层评测：提交前小样本冒烟、夜间全量回归、高风险人工抽检",
+          "把失败样本自动归类进缺陷知识库并关联历史 Bug",
+          "输出一份带阈值与风险结论的评测报告，供发布决策"
+        ],
+        "resources": [
+          "本仓库 scripts/defect-kb.js（缺陷沉淀）",
+          "华为云 AgentArts 全链路观测与评估",
+          "鸿蒙 DFX Skills（应用层故障分析，能力互补）"
+        ]
+      }
+    }
+  }
+}

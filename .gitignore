@@ -1,0 +1,32 @@
+# macOS
+.DS_Store
+._*
+.AppleDouble
+__MACOSX/
+.Spotlight-V100
+.Trashes
+
+# 运行时生成（诊断历史与错题池）
+data/progress.json
+**/progress.json
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-error.log*
+package-lock.json
+
+# 编辑器与 IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# 日志与临时文件
+*.log
+*.tmp
+*.bak
+# 本地工具链与 IDE 索引（不入库）
+.tools/
+.codeartsdoer/
+.merkle-snapshot.json

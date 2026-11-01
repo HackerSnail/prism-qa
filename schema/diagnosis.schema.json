@@ -1,0 +1,100 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "DiagnosisReport",
+  "description": "AI 测试能力诊断输出：五层雷达、差距分析、学习路径与能力名片",
+  "type": "object",
+  "required": ["date", "mode", "total", "correct", "accuracy", "overall", "level", "layers", "wrong", "paths", "card"],
+  "properties": {
+    "date": { "type": "string", "description": "诊断日期 YYYY-MM-DD" },
+    "mode": { "type": "string", "description": "full / 单层 key / basics" },
+    "total": { "type": "integer" },
+    "correct": { "type": "integer" },
+    "accuracy": { "type": "number", "minimum": 0, "maximum": 100 },
+    "overall": { "type": "number", "minimum": 0, "maximum": 100, "description": "按权重合成的总分" },
+    "level": {
+      "type": "object",
+      "required": ["code", "label"],
+      "properties": {
+        "min": { "type": "number" },
+        "code": { "type": "string", "enum": ["L1", "L2", "L3", "L4"] },
+        "label": { "type": "string" },
+        "hint": { "type": "string" }
+      }
+    },
+    "layers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["key", "name", "weight", "score", "correct", "total"],
+        "properties": {
+          "key": { "type": "string", "enum": ["prompt", "agent", "skill", "mcp", "specialty"] },
+          "name": { "type": "string" },
+          "weight": { "type": "number" },
+          "score": { "type": "number", "minimum": 0, "maximum": 100 },
+          "correct": { "type": "integer" },
+          "total": { "type": "integer" },
+          "level": { "type": "string" }
+        }
+      }
+    },
+    "infra": {
+      "type": ["object", "null"],
+      "description": "基础设施层前置检查，不计入五层雷达",
+      "properties": {
+        "score": { "type": "number" },
+        "pass": { "type": "boolean" }
+      }
+    },
+    "weakest": {
+      "type": ["object", "null"],
+      "properties": { "key": { "type": "string" }, "name": { "type": "string" }, "score": { "type": "number" } }
+    },
+    "strongest": {
+      "type": ["object", "null"],
+      "properties": { "key": { "type": "string" }, "name": { "type": "string" }, "score": { "type": "number" } }
+    },
+    "wrong": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "q", "ans", "blind"],
+        "properties": {
+          "id": { "type": "string" },
+          "q": { "type": "string" },
+          "given": { "type": "string" },
+          "ans": { "type": "string" },
+          "blind": { "type": "string", "enum": ["command", "concept", "process", "apply"] }
+        }
+      }
+    },
+    "dims": {
+      "type": "object",
+      "description": "错题归因计数",
+      "properties": {
+        "command": { "type": "integer" },
+        "concept": { "type": "integer" },
+        "process": { "type": "integer" },
+        "apply": { "type": "integer" }
+      }
+    },
+    "paths": {
+      "type": "array",
+      "description": "按优先级排序的学习路径，取最短板 1-2 层",
+      "items": {
+        "type": "object",
+        "required": ["layer", "band", "focus", "actions", "resources"],
+        "properties": {
+          "layer": { "type": "string" },
+          "name": { "type": "string" },
+          "score": { "type": "number" },
+          "band": { "type": "string", "enum": ["low", "mid", "high"] },
+          "focus": { "type": "string" },
+          "actions": { "type": "array", "items": { "type": "string" } },
+          "resources": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    "nextActions": { "type": "array", "items": { "type": "string" } },
+    "card": { "type": "string", "description": "可分享的能力名片 Markdown" }
+  }
+}

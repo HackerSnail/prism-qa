@@ -1,0 +1,3075 @@
+{
+  "meta": {
+    "version": "2.0",
+    "updated": "2026-10-25",
+    "model": "AI 测试五层能力模型",
+    "policy": "五层能力题每月随大厂 JD 与高频面试题更新一次；旧题只做修订不删除，保证历史成绩可比",
+    "note": "infra 为原 72 道 Linux 题，降级为基础设施层前置检查；basics 为原 125 道测试基本功题，保留为面试回练，不计入五层雷达"
+  },
+  "banks": {
+    "infra": [
+      {
+        "id": "L01",
+        "q": "当前在哪个目录？",
+        "ans": "pwd",
+        "accept": [
+          "pwd"
+        ],
+        "blind": "command",
+        "level": 1
+      },
+      {
+        "id": "L02",
+        "q": "列出所有文件，含隐藏文件？",
+        "ans": "ls -la",
+        "accept": [
+          "ls -la",
+          "ls -al"
+        ],
+        "blind": "command",
+        "level": 1
+      },
+      {
+        "id": "L03",
+        "q": "进入 /var/log 目录？",
+        "ans": "cd /var/log",
+        "accept": [
+          "cd /var/log"
+        ],
+        "blind": "command",
+        "level": 1
+      },
+      {
+        "id": "L04",
+        "q": "`~` 代表什么？",
+        "ans": "当前用户的家目录",
+        "accept": [
+          "家目录",
+          "home",
+          "用户主目录"
+        ],
+        "blind": "concept",
+        "level": 1
+      },
+      {
+        "id": "L05",
+        "q": "查看 syslog 最后 50 行？",
+        "ans": "tail -n 50 syslog",
+        "accept": [
+          "tail",
+          "-n 50",
+          "tail -n"
+        ],
+        "blind": "command",
+        "level": 1
+      },
+      {
+        "id": "L06",
+        "q": "实时看日志滚动，怎么退出？",
+        "ans": "tail -f syslog，Ctrl+C 退出",
+        "accept": [
+          "tail -f",
+          "ctrl+c"
+        ],
+        "blind": "command",
+        "level": 1
+      },
+      {
+        "id": "L07",
+        "q": "忽略大小写搜索 error？",
+        "ans": "grep -i error syslog",
+        "accept": [
+          "grep -i"
+        ],
+        "blind": "command",
+        "level": 1
+      },
+      {
+        "id": "L08",
+        "q": "搜索 error 并带前后文？",
+        "ans": "grep -i error syslog -B 3 -A 5",
+        "accept": [
+          "-b",
+          "-a",
+          "grep"
+        ],
+        "blind": "command",
+        "level": 3
+      },
+      {
+        "id": "L09",
+        "q": "大文件一页页看、翻页、退出？",
+        "ans": "less 文件，空格翻页，q 退出",
+        "accept": [
+          "less",
+          "空格",
+          "q"
+        ],
+        "blind": "command",
+        "level": 1
+      },
+      {
+        "id": "L10",
+        "q": "统计文件行数？",
+        "ans": "wc -l 文件",
+        "accept": [
+          "wc -l",
+          "wc"
+        ],
+        "blind": "command",
+        "level": 1
+      },
+      {
+        "id": "L11",
+        "q": "查 Java 进程在不在？",
+        "ans": "ps -ef | grep java",
+        "accept": [
+          "ps",
+          "grep java"
+        ],
+        "blind": "command",
+        "level": 1
+      },
+      {
+        "id": "L12",
+        "q": "强制结束进程？",
+        "ans": "kill -9 PID",
+        "accept": [
+          "kill -9",
+          "kill"
+        ],
+        "blind": "command",
+        "level": 2
+      },
+      {
+        "id": "L13",
+        "q": "谁在吃 CPU？",
+        "ans": "top",
+        "accept": [
+          "top"
+        ],
+        "blind": "command",
+        "level": 1
+      },
+      {
+        "id": "L14",
+        "q": "磁盘还剩多少空间？",
+        "ans": "df -h",
+        "accept": [
+          "df -h",
+          "df"
+        ],
+        "blind": "command",
+        "level": 1
+      },
+      {
+        "id": "L15",
+        "q": "哪个目录最占空间？",
+        "ans": "du -sh * | sort -rh | head -10",
+        "accept": [
+          "du -sh",
+          "sort -rh",
+          "du"
+        ],
+        "blind": "command",
+        "level": 3
+      },
+      {
+        "id": "L16",
+        "q": "内存够不够？",
+        "ans": "free -h（看 available 列）",
+        "accept": [
+          "free -h",
+          "free"
+        ],
+        "blind": "command",
+        "level": 1
+      },
+      {
+        "id": "L17",
+        "q": "8080 端口被谁占用？",
+        "ans": "sudo ss -tlnp | grep 8080",
+        "accept": [
+          "ss -tlnp",
+          "ss",
+          "grep 8080"
+        ],
+        "blind": "command",
+        "level": 3
+      },
+      {
+        "id": "L18",
+        "q": "`ss -tlnp` 各字母含义？",
+        "ans": "t=TCP、l=Listen、n=数字、p=程序",
+        "accept": [
+          "tcp",
+          "listen",
+          "程序"
+        ],
+        "blind": "concept",
+        "level": 3
+      },
+      {
+        "id": "L19",
+        "q": "查看本机 IP？",
+        "ans": "ip addr",
+        "accept": [
+          "ip addr",
+          "ip a"
+        ],
+        "blind": "command",
+        "level": 1
+      },
+      {
+        "id": "L20",
+        "q": "测试能否上网？",
+        "ans": "ping -c 4 8.8.8.8",
+        "accept": [
+          "ping"
+        ],
+        "blind": "command",
+        "level": 1
+      },
+      {
+        "id": "L21",
+        "q": "区分内网还是外网故障？",
+        "ans": "先 ping -c 4 网关，通了再看外网",
+        "accept": [
+          "ping",
+          "网关"
+        ],
+        "blind": "process",
+        "level": 3
+      },
+      {
+        "id": "L22",
+        "q": "测试某端口是否开放？",
+        "ans": "telnet IP 端口",
+        "accept": [
+          "telnet",
+          "nc"
+        ],
+        "blind": "command",
+        "level": 2
+      },
+      {
+        "id": "L23",
+        "q": "接口发 POST 请求？",
+        "ans": "curl -X POST -d \"参数\" URL",
+        "accept": [
+          "curl",
+          "-x post"
+        ],
+        "blind": "command",
+        "level": 2
+      },
+      {
+        "id": "L24",
+        "q": "整个目录搜关键词？",
+        "ans": "grep -r \"词\" 目录/",
+        "accept": [
+          "grep -r"
+        ],
+        "blind": "command",
+        "level": 2
+      },
+      {
+        "id": "L25",
+        "q": "找 /var/log 下 1 天内改过的文件？",
+        "ans": "find /var/log -mtime -1",
+        "accept": [
+          "find",
+          "-mtime -1"
+        ],
+        "blind": "command",
+        "level": 1
+      },
+      {
+        "id": "L26",
+        "q": "日志打包发给开发？",
+        "ans": "tar -czvf logs.tar.gz /var/log/",
+        "accept": [
+          "tar -czvf",
+          "tar"
+        ],
+        "blind": "command",
+        "level": 3
+      },
+      {
+        "id": "L27",
+        "q": "tar 的四个口诀？",
+        "ans": "压缩 czvf、解压 xzvf、看内容 tzvf，f 永远最后",
+        "accept": [
+          "czvf",
+          "xzvf",
+          "tzvf"
+        ],
+        "blind": "concept",
+        "level": 3
+      },
+      {
+        "id": "L28",
+        "q": "脚本没有执行权限？",
+        "ans": "chmod +x 脚本名",
+        "accept": [
+          "chmod +x",
+          "chmod"
+        ],
+        "blind": "command",
+        "level": 2
+      },
+      {
+        "id": "L29",
+        "q": "`chmod 755` 的含义？",
+        "ans": "所有者 rwx(7)、组 r-x(5)、其他 r-x(5)；r=4 w=2 x=1",
+        "accept": [
+          "rwx",
+          "7",
+          "r=4",
+          "755"
+        ],
+        "blind": "concept",
+        "level": 3
+      },
+      {
+        "id": "L30",
+        "q": "文件属主不对改不了？",
+        "ans": "sudo chown 用户:用户 文件",
+        "accept": [
+          "chown"
+        ],
+        "blind": "command",
+        "level": 2
+      },
+      {
+        "id": "L31",
+        "q": "后台启动服务且不退？",
+        "ans": "nohup java -jar app.jar &",
+        "accept": [
+          "nohup"
+        ],
+        "blind": "command",
+        "level": 3
+      },
+      {
+        "id": "L32",
+        "q": "`>` 与 `>>` 区别？",
+        "ans": "`>` 覆盖写入，`>>` 追加不覆盖",
+        "accept": [
+          "覆盖",
+          "追加"
+        ],
+        "blind": "concept",
+        "level": 3
+      },
+      {
+        "id": "L33",
+        "q": "`|` 管道是干什么的？",
+        "ans": "把左边命令输出作为右边命令的输入",
+        "accept": [
+          "输出作为输入",
+          "管道"
+        ],
+        "blind": "concept",
+        "level": 3
+      },
+      {
+        "id": "L34",
+        "q": "命令敲一半卡住怎么办？",
+        "ans": "Ctrl+C 中断",
+        "accept": [
+          "ctrl+c",
+          "ctrl c"
+        ],
+        "blind": "command",
+        "level": 1
+      },
+      {
+        "id": "L35",
+        "q": "屏幕太乱 / 刚才敲过什么？",
+        "ans": "clear 清屏 / history 查看，!序号 重复执行",
+        "accept": [
+          "clear",
+          "history"
+        ],
+        "blind": "command",
+        "level": 1
+      },
+      {
+        "id": "L36",
+        "q": "优雅关机？",
+        "ans": "shutdown -h now",
+        "accept": [
+          "shutdown"
+        ],
+        "blind": "command",
+        "level": 1
+      },
+      {
+        "id": "L37",
+        "q": "查命令用法？",
+        "ans": "命令 --help 或 man 命令",
+        "accept": [
+          "--help",
+          "man"
+        ],
+        "blind": "command",
+        "level": 1
+      },
+      {
+        "id": "L38",
+        "q": "返回上一级目录、回到根目录？",
+        "ans": "cd .. 返回上一级，cd / 回到根目录",
+        "accept": [
+          "cd ..",
+          "cd /"
+        ],
+        "blind": "command",
+        "level": 1
+      },
+      {
+        "id": "L39",
+        "q": "创建与删除目录？",
+        "ans": "mkdir 目录名 创建，rmdir 目录名 删除空目录",
+        "accept": [
+          "mkdir",
+          "rmdir"
+        ],
+        "blind": "command",
+        "level": 1
+      },
+      {
+        "id": "L40",
+        "q": "强制删除目录及其所有内容（危险）？",
+        "ans": "rm -rf 目录名，删除不可恢复，慎用",
+        "accept": [
+          "rm -rf"
+        ],
+        "blind": "command",
+        "level": 3
+      },
+      {
+        "id": "L41",
+        "q": "创建空文件或更新文件时间戳？",
+        "ans": "touch 文件名",
+        "accept": [
+          "touch"
+        ],
+        "blind": "command",
+        "level": 1
+      },
+      {
+        "id": "L42",
+        "q": "复制文件与目录？",
+        "ans": "cp 原文件 目标；cp -r 原目录 目标目录（递归）",
+        "accept": [
+          "cp"
+        ],
+        "blind": "command",
+        "level": 1
+      },
+      {
+        "id": "L43",
+        "q": "移动文件或重命名？",
+        "ans": "mv 原文件 目标文件",
+        "accept": [
+          "mv"
+        ],
+        "blind": "command",
+        "level": 1
+      },
+      {
+        "id": "L44",
+        "q": "删除文件？",
+        "ans": "rm 文件名（无回收站，删了找不回）",
+        "accept": [
+          "rm"
+        ],
+        "blind": "command",
+        "level": 1
+      },
+      {
+        "id": "L45",
+        "q": "查看文件全部内容并带行号？",
+        "ans": "cat 文件名；cat -n 文件名 带行号",
+        "accept": [
+          "cat"
+        ],
+        "blind": "command",
+        "level": 1
+      },
+      {
+        "id": "L46",
+        "q": "查看文件前 N 行？",
+        "ans": "head -n 行数 文件名",
+        "accept": [
+          "head -n",
+          "head"
+        ],
+        "blind": "command",
+        "level": 1
+      },
+      {
+        "id": "L47",
+        "q": "把内容写入文件，覆盖与追加的区别？",
+        "ans": "echo 内容 > 文件（覆盖）；echo 内容 >> 文件（追加不覆盖）",
+        "accept": [
+          ">",
+          ">>",
+          "echo"
+        ],
+        "blind": "command",
+        "level": 3
+      },
+      {
+        "id": "L48",
+        "q": "搜索时显示行号、跨多个文件搜索？",
+        "ans": "grep -n 关键词 文件；grep error *.log",
+        "accept": [
+          "grep -n",
+          "*.log"
+        ],
+        "blind": "command",
+        "level": 3
+      },
+      {
+        "id": "L49",
+        "q": "文件内容排序与去重？",
+        "ans": "sort 文件；sort 文件 | uniq -c 去重计数",
+        "accept": [
+          "sort",
+          "uniq"
+        ],
+        "blind": "command",
+        "level": 3
+      },
+      {
+        "id": "L50",
+        "q": "查看进程含 CPU/内存占用？",
+        "ans": "ps -aux；或 htop 增强版（需安装）",
+        "accept": [
+          "ps -aux",
+          "htop"
+        ],
+        "blind": "command",
+        "level": 3
+      },
+      {
+        "id": "L51",
+        "q": "普通结束进程与后台任务调度？",
+        "ans": "kill PID 结束；jobs 查看后台任务，fg 任务号 调回前台",
+        "accept": [
+          "kill",
+          "jobs",
+          "fg"
+        ],
+        "blind": "command",
+        "level": 1
+      },
+      {
+        "id": "L52",
+        "q": "查看网络配置、启停网卡？",
+        "ans": "ifconfig 查配置；ip link set 网卡 up/down 启停",
+        "accept": [
+          "ifconfig",
+          "ip link"
+        ],
+        "blind": "command",
+        "level": 1
+      },
+      {
+        "id": "L53",
+        "q": "查看监听端口（netstat 版）？",
+        "ans": "netstat -tlnp（ss -tlnp 的同类命令）",
+        "accept": [
+          "netstat"
+        ],
+        "blind": "command",
+        "level": 3
+      },
+      {
+        "id": "L54",
+        "q": "查看路由表/网关？",
+        "ans": "ip route（可查网关与本机 IP）",
+        "accept": [
+          "ip route"
+        ],
+        "blind": "command",
+        "level": 3
+      },
+      {
+        "id": "L55",
+        "q": "查询当前用户、主机名、详细主机信息？",
+        "ans": "whoami 查用户；hostname 主机名；hostnamectl 详细系统信息",
+        "accept": [
+          "whoami",
+          "hostname",
+          "hostnamectl"
+        ],
+        "blind": "command",
+        "level": 1
+      },
+      {
+        "id": "L56",
+        "q": "切换到 root 与退出当前用户？",
+        "ans": "sudo su - 切 root；exit 退出",
+        "accept": [
+          "sudo su",
+          "exit"
+        ],
+        "blind": "command",
+        "level": 3
+      },
+      {
+        "id": "L57",
+        "q": "细粒度修改文件权限？",
+        "ans": "chmod u+x 给所有者加执行；chmod o-r 去其他人读；chmod -x 移除执行",
+        "accept": [
+          "chmod u+x",
+          "chmod o-r",
+          "chmod -x"
+        ],
+        "blind": "command",
+        "level": 3
+      },
+      {
+        "id": "L58",
+        "q": "解压到指定目录？",
+        "ans": "tar -xzvf 包.tar.gz -C /目标目录/",
+        "accept": [
+          "tar -xzvf",
+          "-c "
+        ],
+        "blind": "command",
+        "level": 3
+      },
+      {
+        "id": "L59",
+        "q": "远程传输与登录指定端口？",
+        "ans": "scp -P 2222 文件 用户@IP:/路径/；ssh -p 2222 用户@IP",
+        "accept": [
+          "scp -p",
+          "ssh -p"
+        ],
+        "blind": "command",
+        "level": 3
+      },
+      {
+        "id": "L60",
+        "q": "查看系统版本与内核？",
+        "ans": "uname -a；cat /etc/os-release 看发行版",
+        "accept": [
+          "uname",
+          "os-release"
+        ],
+        "blind": "command",
+        "level": 3
+      },
+      {
+        "id": "L61",
+        "q": "用 awk 提取某列、按进程名批量结束进程？",
+        "ans": "awk '{print $2}' 取第2列；ps -ef | grep app.jar | awk '{print $2}' | xargs kill -9",
+        "accept": [
+          "awk",
+          "xargs"
+        ],
+        "blind": "command",
+        "level": 3
+      },
+      {
+        "id": "L62",
+        "q": "用 sed 替换文件内容？",
+        "ans": "sed -i 's/旧/新/g' 文件名",
+        "accept": [
+          "sed",
+          "s/"
+        ],
+        "blind": "command",
+        "level": 3
+      },
+      {
+        "id": "L63",
+        "q": "find 按文件类型和大小查找？",
+        "ans": "find /路径 -type f 找普通文件；-type d 找目录；-size +10M 大于10M",
+        "accept": [
+          "-type",
+          "-size",
+          "find"
+        ],
+        "blind": "command",
+        "level": 2
+      },
+      {
+        "id": "L64",
+        "q": "统计关键词出现次数？",
+        "ans": "grep -c ERROR 日志 或 grep ERROR 日志 | wc -l",
+        "accept": [
+          "grep -c",
+          "wc -l"
+        ],
+        "blind": "command",
+        "level": 3
+      },
+      {
+        "id": "L65",
+        "q": "查看某端口被哪个进程占用（lsof）？",
+        "ans": "lsof -i:8080",
+        "accept": [
+          "lsof"
+        ],
+        "blind": "command",
+        "level": 3
+      },
+      {
+        "id": "L66",
+        "q": "创建软链接？",
+        "ans": "ln -s 目标 链接名",
+        "accept": [
+          "ln -s"
+        ],
+        "blind": "command",
+        "level": 2
+      },
+      {
+        "id": "L67",
+        "q": "vim 进入编辑、保存退出、强制退出？",
+        "ans": "i 插入；:wq 保存退出；:q! 不保存强制退出",
+        "accept": [
+          "vim",
+          ":wq",
+          ":q!"
+        ],
+        "blind": "command",
+        "level": 3
+      },
+      {
+        "id": "L68",
+        "q": "配置定时任务？",
+        "ans": "crontab -e 编辑，格式：分 时 日 月 周 命令",
+        "accept": [
+          "crontab"
+        ],
+        "blind": "command",
+        "level": 3
+      },
+      {
+        "id": "L69",
+        "q": "启动/停止/查看服务状态？",
+        "ans": "systemctl start/stop/status/restart 服务名",
+        "accept": [
+          "systemctl"
+        ],
+        "blind": "command",
+        "level": 3
+      },
+      {
+        "id": "L70",
+        "q": "top 里 load average 三个值含义？",
+        "ans": "1/5/15 分钟平均负载，反映系统繁忙程度",
+        "accept": [
+          "load average",
+          "负载"
+        ],
+        "blind": "concept",
+        "level": 3
+      },
+      {
+        "id": "L71",
+        "q": "查看磁盘分区与挂载？",
+        "ans": "lsblk 查看块设备；mount 查看挂载；df -h 看使用",
+        "accept": [
+          "mount",
+          "lsblk"
+        ],
+        "blind": "command",
+        "level": 2
+      },
+      {
+        "id": "L72",
+        "q": "查看与设置环境变量？",
+        "ans": "echo $PATH 查看；export 变量=值 设置",
+        "accept": [
+          "export",
+          "$path"
+        ],
+        "blind": "command",
+        "level": 2
+      }
+    ],
+    "basics": [
+      {
+        "id": "M01",
+        "q": "软件测试流程？",
+        "ans": "需求调查 → 测试准备 → 测试设计 → 测试实施 → 测试评估",
+        "accept": [
+          "需求",
+          "设计",
+          "实施",
+          "评估"
+        ],
+        "blind": "process",
+        "level": 1
+      },
+      {
+        "id": "M02",
+        "q": "测试四阶段？",
+        "ans": "单元（最小单位白盒）→ 集成（按设计组装查接口）→ 系统（全功能）→ 验收（以需求规格为准）",
+        "accept": [
+          "单元",
+          "集成",
+          "系统",
+          "验收"
+        ],
+        "blind": "process",
+        "level": 1
+      },
+      {
+        "id": "M03",
+        "q": "什么是冒烟测试？",
+        "ans": "正式测试前验证主流程走通、版本可测",
+        "accept": [
+          "主流程",
+          "走通",
+          "版本可测"
+        ],
+        "blind": "concept",
+        "level": 1
+      },
+      {
+        "id": "M04",
+        "q": "什么是回归测试？",
+        "ans": "新版本重复执行既有用例，验证旧缺陷已修且未引入新缺陷",
+        "accept": [
+          "重复执行",
+          "验证",
+          "新缺陷"
+        ],
+        "blind": "concept",
+        "level": 1
+      },
+      {
+        "id": "M05",
+        "q": "黑盒测试优缺点？",
+        "ans": "优点不需懂代码、从用户角度、自动化方便；缺点覆盖率低（约30%）、脚本复用性差",
+        "accept": [
+          "不懂代码",
+          "覆盖率低"
+        ],
+        "blind": "concept",
+        "level": 1
+      },
+      {
+        "id": "M06",
+        "q": "白盒测试优缺点？",
+        "ans": "优点提高代码覆盖、发现隐藏问题；缺点路径测不完、只验代码不验设计",
+        "accept": [
+          "代码覆盖",
+          "路径测不完"
+        ],
+        "blind": "concept",
+        "level": 1
+      },
+      {
+        "id": "M07",
+        "q": "灰盒与黑盒区别？",
+        "ans": "黑盒只关心系统边界；灰盒要关心模块间交互，但不深入模块内部实现",
+        "accept": [
+          "黑盒",
+          "边界",
+          "模块间交互"
+        ],
+        "blind": "concept",
+        "level": 1
+      },
+      {
+        "id": "M08",
+        "q": "边界值取哪三个位置？",
+        "ans": "正好等于、刚刚大于、刚刚小于",
+        "accept": [
+          "等于",
+          "大于",
+          "小于"
+        ],
+        "blind": "concept",
+        "level": 3
+      },
+      {
+        "id": "M09",
+        "q": "无效等价类怎么组合？",
+        "ans": "每次只违反一条，其余合法，否则一次失败掩盖多个问题",
+        "accept": [
+          "只违反一条",
+          "一条"
+        ],
+        "blind": "concept",
+        "level": 3
+      },
+      {
+        "id": "M10",
+        "q": "正交表的特点？",
+        "ans": "最少实验覆盖最多操作，效率高但复杂，多在系统测试用",
+        "accept": [
+          "最少",
+          "覆盖最多"
+        ],
+        "blind": "concept",
+        "level": 3
+      },
+      {
+        "id": "M11",
+        "q": "Bug 记录必备内容？",
+        "ans": "编号、模块、版本、严重级与优先级、摘要、描述、环境与前置、复现步骤、附件、发现/提交/处理人、日期",
+        "accept": [
+          "编号",
+          "模块",
+          "版本",
+          "复现步骤"
+        ],
+        "blind": "concept",
+        "level": 2
+      },
+      {
+        "id": "M12",
+        "q": "严重级与优先级区别？",
+        "ans": "严重级看缺陷对用户影响程度，优先级看修复紧急程度；高严重不一定高优先",
+        "accept": [
+          "影响",
+          "紧急",
+          "严重级",
+          "优先级"
+        ],
+        "blind": "concept",
+        "level": 2
+      },
+      {
+        "id": "M13",
+        "q": "缺陷生命周期？",
+        "ans": "提交 → 确认 → 分配 → 修复 → 验证 → 关闭",
+        "accept": [
+          "提交",
+          "分配",
+          "修复",
+          "验证",
+          "关闭"
+        ],
+        "blind": "process",
+        "level": 2
+      },
+      {
+        "id": "M14",
+        "q": "压力、负载、性能的区别？",
+        "ans": "性能是大伞；增大用户数或大数据量是压力；集中极限下响应能力是负载",
+        "accept": [
+          "性能",
+          "压力",
+          "负载"
+        ],
+        "blind": "concept",
+        "level": 3
+      },
+      {
+        "id": "M15",
+        "q": "拿到一个网站怎么测？",
+        "ans": "查文档定范围 → 计划 → 设计用例 → 执行记缺陷 → 定期评审调整",
+        "accept": [
+          "定范围",
+          "计划",
+          "设计用例",
+          "执行"
+        ],
+        "blind": "process",
+        "level": 2
+      },
+      {
+        "id": "M16",
+        "q": "一个纸杯怎么测？",
+        "ans": "功能/安全/可靠/可移植/兼容/易用/文档/疲劳/压力等维度",
+        "accept": [
+          "功能",
+          "安全",
+          "可靠",
+          "兼容"
+        ],
+        "blind": "concept",
+        "level": 2
+      },
+      {
+        "id": "M17",
+        "q": "App 没有需求怎么测？",
+        "ans": "11 大测试点 + 制定计划 + 每日日报 + 及时上报风险",
+        "accept": [
+          "测试点",
+          "计划",
+          "日报",
+          "上报"
+        ],
+        "blind": "process",
+        "level": 2
+      },
+      {
+        "id": "M18",
+        "q": "安全测试五个面？",
+        "ans": "用户认证机制、加密机制、安全防护策略、数据备份恢复、防病毒",
+        "accept": [
+          "认证",
+          "加密",
+          "防护",
+          "备份"
+        ],
+        "blind": "concept",
+        "level": 2
+      },
+      {
+        "id": "M19",
+        "q": "认证安全具体测什么？",
+        "ans": "权限区分与冲突、密码可见可复制、退出后鉴权标记是否清除、后退键能否再进",
+        "accept": [
+          "权限",
+          "密码",
+          "鉴权",
+          "后退"
+        ],
+        "blind": "process",
+        "level": 2
+      },
+      {
+        "id": "M20",
+        "q": "兼容测试重点？",
+        "ans": "兼容环境分析；兼容多在 CleanOS 下做，配置测试多在非 CleanOS 下做",
+        "accept": [
+          "cleanos",
+          "环境",
+          "兼容"
+        ],
+        "blind": "concept",
+        "level": 3
+      },
+      {
+        "id": "M21",
+        "q": "α 与 β 测试区别？",
+        "ans": "α：开发环境/内部模拟环境、受控、开发者在场；β：实际用户环境、开发者不在场；两者都不能由程序员或测试员完成",
+        "accept": [
+          "受控",
+          "开发者在场",
+          "实际环境"
+        ],
+        "blind": "concept",
+        "level": 3
+      },
+      {
+        "id": "M22",
+        "q": "测试计划 5W？",
+        "ans": "What 范围内容 / Why 目的 / When 起止 / Where 文档软件存放 / How 方法工具",
+        "accept": [
+          "范围",
+          "目的",
+          "时间",
+          "方法"
+        ],
+        "blind": "concept",
+        "level": 2
+      },
+      {
+        "id": "M23",
+        "q": "用例评审谁参加？",
+        "ans": "产品（SR）、测试组长、对应模块开发为主，大项目二审，小项目邮件抄送",
+        "accept": [
+          "产品",
+          "测试组长",
+          "开发"
+        ],
+        "blind": "concept",
+        "level": 2
+      },
+      {
+        "id": "M24",
+        "q": "测试通过标准？",
+        "ans": "缺陷密度达到客户要求",
+        "accept": [
+          "缺陷密度",
+          "客户要求"
+        ],
+        "blind": "concept",
+        "level": 2
+      },
+      {
+        "id": "M25",
+        "q": "二八原则是什么？",
+        "ans": "80% 错误起源于 20% 的模块，缺陷存在群集现象",
+        "accept": [
+          "80%",
+          "20%",
+          "群集"
+        ],
+        "blind": "concept",
+        "level": 3
+      },
+      {
+        "id": "M26",
+        "q": "开发说不是 bug 怎么办？",
+        "ans": "先给需求/原型/设计文档依据；没文档则用同类软件一般特性论证；仍争议拉产品与双方组长定并记录结论",
+        "accept": [
+          "需求",
+          "文档",
+          "产品",
+          "记录"
+        ],
+        "blind": "process",
+        "level": 2
+      },
+      {
+        "id": "M27",
+        "q": "阻塞问题开发没时间修？",
+        "ans": "判严重性 → 问原因 → 报双方组长 → 上报分组经理协调人力",
+        "accept": [
+          "严重性",
+          "组长",
+          "上报"
+        ],
+        "blind": "process",
+        "level": 2
+      },
+      {
+        "id": "M28",
+        "q": "一个模块只有一周时间？",
+        "ans": "明确需求后排计划、任务到天、先保重要功能、跟修复及时验证、每日日报、有风险即报",
+        "accept": [
+          "计划",
+          "重要功能",
+          "日报"
+        ],
+        "blind": "process",
+        "level": 2
+      },
+      {
+        "id": "M29",
+        "q": "每天执行多少用例？",
+        "ans": "约 20 条，前期慢（沟通多）后期快",
+        "accept": [
+          "20"
+        ],
+        "blind": "concept",
+        "level": 2
+      },
+      {
+        "id": "M30",
+        "q": "B/S 与 C/S 区别？",
+        "ans": "B/S 跨平台、客户端零维护、个性化低响应慢；C/S 响应快安全性强、限局域网、维护成本高",
+        "accept": [
+          "b/s",
+          "c/s",
+          "跨平台",
+          "局域网"
+        ],
+        "blind": "concept",
+        "level": 3
+      },
+      {
+        "id": "M31",
+        "q": "GET 与 POST 区别？",
+        "ans": "GET 参数在地址栏、长度受限（约4KB）、可缓存、多用于取数；POST 参数在实体、量大、不缓存、多用于提交",
+        "accept": [
+          "地址栏",
+          "4kb",
+          "缓存",
+          "实体"
+        ],
+        "blind": "concept",
+        "level": 3
+      },
+      {
+        "id": "M32",
+        "q": "Cookie 与 Session 区别？",
+        "ans": "Cookie 在客户端、有大小条数限制、可被截获有隐患；Session 在服务端、受内存限制、过多增加压力",
+        "accept": [
+          "客户端",
+          "服务端",
+          "cookie",
+          "session"
+        ],
+        "blind": "concept",
+        "level": 3
+      },
+      {
+        "id": "M33",
+        "q": "常见状态码？",
+        "ans": "200 成功 / 304 资源未修改 / 307 内部重定向 / 404 未找到 / 500 服务器内部错误",
+        "accept": [
+          "200",
+          "404",
+          "500"
+        ],
+        "blind": "concept",
+        "level": 3
+      },
+      {
+        "id": "M34",
+        "q": "视图与表的区别？",
+        "ans": "视图存储的是一条 SQL，查询时才返回数据、只能查；表是实际数据，可增删改查",
+        "accept": [
+          "sql",
+          "只能查",
+          "实际数据"
+        ],
+        "blind": "concept",
+        "level": 3
+      },
+      {
+        "id": "M35",
+        "q": "程序在 Windows 上跑得慢怎么判？",
+        "ans": "查中毒特征 → 软硬件配置是否达标 → 确认无对外消耗 CPU 的服务 → 查连接与访问 → 空载看性能监视器",
+        "accept": [
+          "中毒",
+          "配置",
+          "性能监视器"
+        ],
+        "blind": "process",
+        "level": 2
+      },
+      {
+        "id": "M36",
+        "q": "软件测试的目的是什么？",
+        "ans": "找出软件中的错误，尽可能符合用户需求；测试不可能找出全部错误",
+        "accept": [
+          "找出错误",
+          "符合需求"
+        ],
+        "blind": "concept",
+        "level": 1
+      },
+      {
+        "id": "M37",
+        "q": "单元测试的对象、依据、方法？",
+        "ans": "对象是模块内部错误，依据模块详细设计，采用白盒测试",
+        "accept": [
+          "模块",
+          "详细设计",
+          "白盒"
+        ],
+        "blind": "concept",
+        "level": 2
+      },
+      {
+        "id": "M38",
+        "q": "测试的策略有哪些？",
+        "ans": "黑盒/白盒、静态/动态、手工/自动、冒烟测试、回归测试、公测（Beta）",
+        "accept": [
+          "黑盒",
+          "白盒",
+          "静态",
+          "动态"
+        ],
+        "blind": "concept",
+        "level": 1
+      },
+      {
+        "id": "M39",
+        "q": "软件生命周期（六大阶段）？",
+        "ans": "计划 → 需求分析 → 设计 → 编码 → 测试 → 运行维护",
+        "accept": [
+          "计划",
+          "需求",
+          "设计",
+          "编码",
+          "测试",
+          "维护"
+        ],
+        "blind": "process",
+        "level": 1
+      },
+      {
+        "id": "M40",
+        "q": "软件测试的原则？",
+        "ans": "尽早介入、所有测试追溯用户需求、二八原则（80% 错误起源于 20% 模块/群集）、穷尽测试不可能",
+        "accept": [
+          "尽早",
+          "二八",
+          "追溯",
+          "群集"
+        ],
+        "blind": "concept",
+        "level": 3
+      },
+      {
+        "id": "M41",
+        "q": "软件质量六大特性？",
+        "ans": "功能性、可靠性、可使用性、效率、可维护性、可移植性",
+        "accept": [
+          "功能性",
+          "可靠性",
+          "可维护性",
+          "可移植性"
+        ],
+        "blind": "concept",
+        "level": 3
+      },
+      {
+        "id": "M42",
+        "q": "静态测试与动态测试的区别？",
+        "ans": "静态不运行程序，查代码错误；动态实际运行程序，比对运行结果",
+        "accept": [
+          "不运行",
+          "运行"
+        ],
+        "blind": "concept",
+        "level": 3
+      },
+      {
+        "id": "M43",
+        "q": "单元测试的策略？",
+        "ans": "自顶向下、自底向上、孤立单元测试（最好）",
+        "accept": [
+          "自顶向下",
+          "自底向上",
+          "孤立"
+        ],
+        "blind": "concept",
+        "level": 3
+      },
+      {
+        "id": "M44",
+        "q": "集成测试的集成方式？",
+        "ans": "大爆炸、自顶向下、自底向上、基于进度",
+        "accept": [
+          "大爆炸",
+          "自顶向下",
+          "自底向上"
+        ],
+        "blind": "concept",
+        "level": 3
+      },
+      {
+        "id": "M45",
+        "q": "系统测试包含哪些测试？",
+        "ans": "功能、界面(UI)、性能、负载、强度、容量、安全与访问控制、故障转移与恢复、配置、安装、加密、可用性、版本验证、文档",
+        "accept": [
+          "功能",
+          "性能",
+          "安全",
+          "配置"
+        ],
+        "blind": "concept",
+        "level": 3
+      },
+      {
+        "id": "M46",
+        "q": "测试用例与测试脚本的关系？",
+        "ans": "脚本是为自动化测试编写的程序，编写必须对应相应的测试用例",
+        "accept": [
+          "自动化",
+          "对应",
+          "用例"
+        ],
+        "blind": "concept",
+        "level": 2
+      },
+      {
+        "id": "M47",
+        "q": "SQA 的职责是什么？",
+        "ans": "独立于项目组，通过监控开发过程保证过程质量，间接保证软件质量",
+        "accept": [
+          "过程",
+          "质量",
+          "监控"
+        ],
+        "blind": "concept",
+        "level": 3
+      },
+      {
+        "id": "M48",
+        "q": "软件配置管理与基线？",
+        "ans": "给项目所有重要产物建可追溯、受管控的仓库；基线是验收盖章、不许随便改的正式版本",
+        "accept": [
+          "仓库",
+          "基线",
+          "可追溯"
+        ],
+        "blind": "concept",
+        "level": 3
+      },
+      {
+        "id": "M49",
+        "q": "因果图、场景法、状态图、大纲法分别何时用？",
+        "ans": "因果图生成判定表查条件组合；场景法按业务流程；状态图覆盖状态流转；大纲法需求转树状大纲",
+        "accept": [
+          "判定表",
+          "业务流程",
+          "状态",
+          "大纲"
+        ],
+        "blind": "concept",
+        "level": 3
+      },
+      {
+        "id": "M50",
+        "q": "300 用户一台客户端与 300 台各一客户端施压的区别？",
+        "ans": "一台会挤占资源、线程干扰、需更大带宽、受单 IP 连接数限制；多台需控制器调度与权限防火墙",
+        "accept": [
+          "资源",
+          "带宽",
+          "分布式",
+          "控制器"
+        ],
+        "blind": "concept",
+        "level": 3
+      },
+      {
+        "id": "M51",
+        "q": "SQL 的增删改查语句？",
+        "ans": "insert into 表 values(...)；delete from 表 where 条件；update 表 set 列=值 where 条件；select * from 表",
+        "accept": [
+          "insert",
+          "delete",
+          "update",
+          "select"
+        ],
+        "blind": "concept",
+        "level": 1
+      },
+      {
+        "id": "M52",
+        "q": "SQL 分组、分组后过滤、排序？",
+        "ans": "group by 列 分组；having 分组后条件；order by 列 排序",
+        "accept": [
+          "group by",
+          "having",
+          "order by"
+        ],
+        "blind": "concept",
+        "level": 2
+      },
+      {
+        "id": "M53",
+        "q": "两张表怎么关联查询？",
+        "ans": "select a.列,b.列 from 表1 a,表2 b where a.列=b.列",
+        "accept": [
+          "join",
+          "where",
+          "表1",
+          "表2"
+        ],
+        "blind": "concept",
+        "level": 3
+      },
+      {
+        "id": "M54",
+        "q": "接口测试关注哪些点？",
+        "ans": "必填、类型、长度、空值与 null、签名/token 过期、幂等、错误码与 message 匹配、限流",
+        "accept": [
+          "签名",
+          "token",
+          "幂等",
+          "错误码"
+        ],
+        "blind": "process",
+        "level": 2
+      },
+      {
+        "id": "M55",
+        "q": "什么是 RESTful 接口？",
+        "ans": "一种接口风格，用 HTTP 方法(GET/POST/PUT/DELETE)操作资源，参数走 URL 或 JSON",
+        "accept": [
+          "rest",
+          "put",
+          "delete"
+        ],
+        "blind": "concept",
+        "level": 2
+      },
+      {
+        "id": "M56",
+        "q": "常见的自动化测试框架/工具？",
+        "ans": "Python: unittest/pytest；接口: requests/postman；Web: selenium/playwright",
+        "accept": [
+          "pytest",
+          "selenium",
+          "postman",
+          "playwright"
+        ],
+        "blind": "concept",
+        "level": 3
+      },
+      {
+        "id": "M57",
+        "q": "性能测试常用指标？",
+        "ans": "TPS/QPS、响应时间、并发数、吞吐量、CPU/内存使用率、错误率",
+        "accept": [
+          "tps",
+          "qps",
+          "响应时间",
+          "并发"
+        ],
+        "blind": "concept",
+        "level": 3
+      },
+      {
+        "id": "M58",
+        "q": "TPS 与 QPS 的区别？",
+        "ans": "TPS 每秒处理事务数；QPS 每秒查询/请求数",
+        "accept": [
+          "tps",
+          "qps",
+          "事务",
+          "查询"
+        ],
+        "blind": "concept",
+        "level": 3
+      },
+      {
+        "id": "M59",
+        "q": "常用缺陷管理工具？",
+        "ans": "禅道、Jira、Bugzilla、TD",
+        "accept": [
+          "禅道",
+          "jira",
+          "bugzilla"
+        ],
+        "blind": "concept",
+        "level": 2
+      },
+      {
+        "id": "M60",
+        "q": "敏捷开发 Scrum 的构成？",
+        "ans": "产品待办列表、Sprint 冲刺、每日站会、评审、回顾；角色有 PO/SM/开发团队",
+        "accept": [
+          "sprint",
+          "站会",
+          "scrum"
+        ],
+        "blind": "process",
+        "level": 3
+      },
+      {
+        "id": "M61",
+        "q": "按是否运行、是否看代码，测试怎么分类？",
+        "ans": "静态/动态；黑盒/白盒/灰盒；功能/非功能（性能、安全、兼容、易用）",
+        "accept": [
+          "静态",
+          "动态",
+          "黑盒",
+          "白盒"
+        ],
+        "blind": "concept",
+        "level": 1
+      },
+      {
+        "id": "M62",
+        "q": "等价类划分与边界值分析的区别？",
+        "ans": "等价类取每类一个代表；边界值是对等价类的补充，取恰好等于/大于/小于边界",
+        "accept": [
+          "代表",
+          "边界",
+          "补充"
+        ],
+        "blind": "concept",
+        "level": 1
+      },
+      {
+        "id": "M63",
+        "q": "301/403/502/503 状态码？",
+        "ans": "301 永久重定向；403 禁止访问；502 网关错误；503 服务不可用",
+        "accept": [
+          "301",
+          "403",
+          "502",
+          "503"
+        ],
+        "blind": "concept",
+        "level": 3
+      },
+      {
+        "id": "M64",
+        "q": "移动端测试比 Web 多关注什么？",
+        "ans": "弱网、流量与电量、来电/短信中断、横竖屏、机型与分辨率、安装卸载升级",
+        "accept": [
+          "弱网",
+          "电量",
+          "中断",
+          "机型"
+        ],
+        "blind": "process",
+        "level": 2
+      },
+      {
+        "id": "M65",
+        "q": "验收测试主要测什么？",
+        "ans": "界面、功能、性能、安全，以《需求规格说明书》为准则，含文档测试",
+        "accept": [
+          "界面",
+          "功能",
+          "性能",
+          "安全",
+          "文档"
+        ],
+        "blind": "process",
+        "level": 1
+      },
+      {
+        "id": "M66",
+        "q": "SQL 有哪些聚合函数？",
+        "ans": "count 统计、sum 求和、avg 平均、max 最大、min 最小",
+        "accept": [
+          "count",
+          "sum",
+          "avg",
+          "max",
+          "min"
+        ],
+        "blind": "concept",
+        "level": 2
+      },
+      {
+        "id": "M67",
+        "q": "SQL 去重查询？",
+        "ans": "select distinct 列 from 表",
+        "accept": [
+          "distinct"
+        ],
+        "blind": "concept",
+        "level": 2
+      },
+      {
+        "id": "M68",
+        "q": "SQL 模糊查询？",
+        "ans": "like 配合 %（任意多个字符）和 _（单个字符）",
+        "accept": [
+          "like",
+          "%",
+          "_"
+        ],
+        "blind": "concept",
+        "level": 2
+      },
+      {
+        "id": "M69",
+        "q": "where 与 having 的区别？",
+        "ans": "where 在分组前过滤行、不能用聚合函数；having 在分组后过滤、可用聚合函数",
+        "accept": [
+          "分组前",
+          "分组后",
+          "聚合"
+        ],
+        "blind": "concept",
+        "level": 3
+      },
+      {
+        "id": "M70",
+        "q": "内连接、左连接、右连接的区别？",
+        "ans": "inner join 只返回匹配行；left join 返回左表全部+右表匹配；right join 返回右表全部+左表匹配",
+        "accept": [
+          "inner",
+          "left",
+          "right",
+          "匹配"
+        ],
+        "blind": "concept",
+        "level": 3
+      },
+      {
+        "id": "M71",
+        "q": "常见 SQL 约束？",
+        "ans": "主键（唯一非空）、外键、唯一、非空、默认值、检查",
+        "accept": [
+          "主键",
+          "外键",
+          "唯一",
+          "非空"
+        ],
+        "blind": "concept",
+        "level": 3
+      },
+      {
+        "id": "M72",
+        "q": "索引的作用与代价？",
+        "ans": "加快查询，但占用空间、降低增删改速度",
+        "accept": [
+          "加快查询",
+          "占用空间",
+          "降低"
+        ],
+        "blind": "concept",
+        "level": 3
+      },
+      {
+        "id": "M73",
+        "q": "事务的 ACID？",
+        "ans": "原子性、一致性、隔离性、持久性",
+        "accept": [
+          "原子",
+          "一致",
+          "隔离",
+          "持久"
+        ],
+        "blind": "concept",
+        "level": 3
+      },
+      {
+        "id": "M74",
+        "q": "order by 默认排序与降序？",
+        "ans": "默认升序 asc，降序用 desc",
+        "accept": [
+          "asc",
+          "desc",
+          "升序",
+          "降序"
+        ],
+        "blind": "concept",
+        "level": 1
+      },
+      {
+        "id": "M75",
+        "q": "SQL 分页？",
+        "ans": "limit 偏移,条数（MySQL），如 limit 0,10",
+        "accept": [
+          "limit",
+          "分页"
+        ],
+        "blind": "concept",
+        "level": 2
+      },
+      {
+        "id": "M76",
+        "q": "什么是接口测试，为什么做？",
+        "ans": "绕过界面直接对后端接口发请求验证逻辑，能更早发现后端缺陷、易自动化",
+        "accept": [
+          "后端",
+          "接口",
+          "自动化"
+        ],
+        "blind": "concept",
+        "level": 2
+      },
+      {
+        "id": "M77",
+        "q": "接口测试的一般流程？",
+        "ans": "分析接口文档 → 设计用例（参数/鉴权/异常）→ 构造请求 → 发送 → 断言响应 → 出报告",
+        "accept": [
+          "接口文档",
+          "断言",
+          "请求"
+        ],
+        "blind": "process",
+        "level": 2
+      },
+      {
+        "id": "M78",
+        "q": "接口测试常用工具？",
+        "ans": "Postman、JMeter、requests（Python）、curl",
+        "accept": [
+          "postman",
+          "jmeter",
+          "requests",
+          "curl"
+        ],
+        "blind": "concept",
+        "level": 1
+      },
+      {
+        "id": "M79",
+        "q": "HTTP 各方法的用途？",
+        "ans": "GET 查询、POST 新增、PUT 更新、DELETE 删除",
+        "accept": [
+          "get",
+          "post",
+          "put",
+          "delete"
+        ],
+        "blind": "concept",
+        "level": 2
+      },
+      {
+        "id": "M80",
+        "q": "一次接口请求需要哪些要素？",
+        "ans": "URL、请求方法、headers、请求参数/body、鉴权信息",
+        "accept": [
+          "url",
+          "headers",
+          "body",
+          "请求方法"
+        ],
+        "blind": "concept",
+        "level": 2
+      },
+      {
+        "id": "M81",
+        "q": "接口鉴权怎么测？",
+        "ans": "无 token、过期/伪造 token、越权访问、退出后 token 是否失效",
+        "accept": [
+          "token",
+          "越权",
+          "过期"
+        ],
+        "blind": "concept",
+        "level": 3
+      },
+      {
+        "id": "M82",
+        "q": "接口幂等性是什么？",
+        "ans": "同一请求重复多次结果应一致，不产生副作用（如重复下单）",
+        "accept": [
+          "幂等",
+          "重复",
+          "一致"
+        ],
+        "blind": "concept",
+        "level": 3
+      },
+      {
+        "id": "M83",
+        "q": "接口错误码怎么设计测试？",
+        "ans": "成功码、缺参、类型错、越权、限流、服务内部错误，错误码与 message 要匹配",
+        "accept": [
+          "错误码",
+          "message",
+          "匹配"
+        ],
+        "blind": "concept",
+        "level": 3
+      },
+      {
+        "id": "M84",
+        "q": "接口文档通常包含什么？",
+        "ans": "URL、方法、参数、返回示例、错误码，常用 Swagger/OpenAPI 生成",
+        "accept": [
+          "swagger",
+          "openapi",
+          "接口文档"
+        ],
+        "blind": "concept",
+        "level": 3
+      },
+      {
+        "id": "M85",
+        "q": "接口弱网/超时/并发怎么测？",
+        "ans": "限制带宽模拟弱网、设置超时、并发压测看限流与稳定性",
+        "accept": [
+          "弱网",
+          "超时",
+          "并发"
+        ],
+        "blind": "concept",
+        "level": 3
+      },
+      {
+        "id": "M86",
+        "q": "什么项目适合做自动化？",
+        "ans": "需求稳定、回归频繁、重复度高、生命周期长的项目",
+        "accept": [
+          "需求稳定",
+          "回归",
+          "重复"
+        ],
+        "blind": "concept",
+        "level": 2
+      },
+      {
+        "id": "M87",
+        "q": "自动化测试的优缺点？",
+        "ans": "优点高效、可重复、持续集成；缺点投入大、维护成本高、不适合需求多变",
+        "accept": [
+          "高效",
+          "维护成本",
+          "重复"
+        ],
+        "blind": "concept",
+        "level": 2
+      },
+      {
+        "id": "M88",
+        "q": "Selenium 元素定位方式？",
+        "ans": "id、name、class、xpath、css selector、link text",
+        "accept": [
+          "id",
+          "xpath",
+          "css"
+        ],
+        "blind": "concept",
+        "level": 2
+      },
+      {
+        "id": "M89",
+        "q": "Playwright 和 Selenium 的区别？",
+        "ans": "Playwright 更快、自带等待、可拦截网络；Selenium 生态更老更成熟",
+        "accept": [
+          "playwright",
+          "selenium",
+          "等待",
+          "拦截"
+        ],
+        "blind": "concept",
+        "level": 3
+      },
+      {
+        "id": "M90",
+        "q": "pytest 的 fixture 和参数化？",
+        "ans": "fixture 做前置/后置与依赖注入；@pytest.mark.parametrize 做参数化",
+        "accept": [
+          "fixture",
+          "parametrize",
+          "参数化"
+        ],
+        "blind": "concept",
+        "level": 3
+      },
+      {
+        "id": "M91",
+        "q": "unittest 与 pytest 区别？",
+        "ans": "pytest 更简洁、断言用 assert、插件丰富、fixture 更灵活；unittest 需继承 TestCase",
+        "accept": [
+          "pytest",
+          "unittest",
+          "assert",
+          "testcase"
+        ],
+        "blind": "concept",
+        "level": 3
+      },
+      {
+        "id": "M92",
+        "q": "什么是数据驱动测试？",
+        "ans": "把测试数据从脚本分离，同一脚本循环跑多组数据",
+        "accept": [
+          "数据分离",
+          "循环",
+          "多组"
+        ],
+        "blind": "concept",
+        "level": 3
+      },
+      {
+        "id": "M93",
+        "q": "数据驱动与关键字驱动区别？",
+        "ans": "数据驱动分离数据；关键字驱动把操作封装成关键字，用例由关键字组合",
+        "accept": [
+          "数据",
+          "关键字",
+          "封装"
+        ],
+        "blind": "concept",
+        "level": 3
+      },
+      {
+        "id": "M94",
+        "q": "自动化断言有哪些类型？",
+        "ans": "相等/包含/存在、页面元素、状态码、数据库值、文本",
+        "accept": [
+          "断言",
+          "相等",
+          "元素",
+          "状态码"
+        ],
+        "blind": "concept",
+        "level": 2
+      },
+      {
+        "id": "M95",
+        "q": "自动化脚本如何保持稳定？",
+        "ans": "统一等待策略、稳定定位器、失败重试、日志截图、定期维护",
+        "accept": [
+          "等待",
+          "定位器",
+          "重试",
+          "截图"
+        ],
+        "blind": "process",
+        "level": 2
+      },
+      {
+        "id": "M96",
+        "q": "性能测试常见类型？",
+        "ans": "负载、压力、强度、容量、并发、稳定性测试",
+        "accept": [
+          "负载",
+          "压力",
+          "强度",
+          "容量"
+        ],
+        "blind": "concept",
+        "level": 2
+      },
+      {
+        "id": "M97",
+        "q": "负载测试与压力测试区别？",
+        "ans": "负载看预期/极限内的表现；压力看超过极限后系统行为（崩溃点、恢复）",
+        "accept": [
+          "负载",
+          "压力",
+          "极限",
+          "崩溃"
+        ],
+        "blind": "concept",
+        "level": 3
+      },
+      {
+        "id": "M98",
+        "q": "强度测试与容量测试？",
+        "ans": "强度测大量数据/长时间下的表现；容量测系统可承载的最大数据量",
+        "accept": [
+          "强度",
+          "容量",
+          "最大"
+        ],
+        "blind": "concept",
+        "level": 3
+      },
+      {
+        "id": "M99",
+        "q": "常用性能测试工具？",
+        "ans": "JMeter、LoadRunner、Locust、Gatling",
+        "accept": [
+          "jmeter",
+          "loadrunner",
+          "locust",
+          "gatling"
+        ],
+        "blind": "concept",
+        "level": 2
+      },
+      {
+        "id": "M100",
+        "q": "性能测试的一般步骤？",
+        "ans": "需求分析→定指标→造数据/脚本→执行→监控→分析定位→调优回归→出报告",
+        "accept": [
+          "定指标",
+          "造数据",
+          "监控",
+          "分析"
+        ],
+        "blind": "process",
+        "level": 2
+      },
+      {
+        "id": "M101",
+        "q": "响应时间、TPS、并发数的含义？",
+        "ans": "响应时间=处理一个请求耗时；TPS=每秒处理事务数；并发=同时请求数",
+        "accept": [
+          "响应时间",
+          "tps",
+          "并发"
+        ],
+        "blind": "concept",
+        "level": 2
+      },
+      {
+        "id": "M102",
+        "q": "p95、p99 分位值含义？",
+        "ans": "95%/99% 的请求响应时间都小于该值，比平均值更能反映长尾",
+        "accept": [
+          "p95",
+          "p99",
+          "分位",
+          "长尾"
+        ],
+        "blind": "concept",
+        "level": 3
+      },
+      {
+        "id": "M103",
+        "q": "性能拐点/瓶颈怎么看？",
+        "ans": "并发上升时 TPS 不再增长甚至下降、响应时间陡增、资源打满处即拐点",
+        "accept": [
+          "拐点",
+          "tps",
+          "响应时间",
+          "下降"
+        ],
+        "blind": "concept",
+        "level": 3
+      },
+      {
+        "id": "M104",
+        "q": "平均数、中位数、p99 的区别？",
+        "ans": "平均数受极端值影响；中位数代表多数体验；p99 反映最差 1% 的体验",
+        "accept": [
+          "平均",
+          "中位",
+          "p99"
+        ],
+        "blind": "concept",
+        "level": 3
+      },
+      {
+        "id": "M105",
+        "q": "性能测试前要准备什么？",
+        "ans": "独立环境、贴近真实的数据量、监控（CPU/内存/网络）、定义指标与场景",
+        "accept": [
+          "环境",
+          "数据量",
+          "监控",
+          "指标"
+        ],
+        "blind": "process",
+        "level": 2
+      },
+      {
+        "id": "M106",
+        "q": "App 测试比 Web 测试多哪些？",
+        "ans": "安装/卸载/升级、中断、弱网、电量流量、机型分辨率、权限",
+        "accept": [
+          "安装",
+          "中断",
+          "弱网",
+          "电量"
+        ],
+        "blind": "concept",
+        "level": 2
+      },
+      {
+        "id": "M107",
+        "q": "Android 与 iOS 测试差异？",
+        "ans": "Android 机型碎片化严重、系统版本多；iOS 机型少、系统封闭稳定",
+        "accept": [
+          "碎片化",
+          "机型",
+          "系统版本"
+        ],
+        "blind": "concept",
+        "level": 3
+      },
+      {
+        "id": "M108",
+        "q": "机型适配测试怎么做？",
+        "ans": "选主流机型覆盖不同分辨率/屏幕尺寸/系统版本，重点测布局与显示",
+        "accept": [
+          "分辨率",
+          "屏幕",
+          "机型"
+        ],
+        "blind": "concept",
+        "level": 2
+      },
+      {
+        "id": "M109",
+        "q": "弱网测试怎么做？",
+        "ans": "用工具模拟丢包、高延迟、限速，验证提示与重试",
+        "accept": [
+          "弱网",
+          "丢包",
+          "延迟",
+          "限速"
+        ],
+        "blind": "process",
+        "level": 2
+      },
+      {
+        "id": "M110",
+        "q": "App 电量/内存/卡顿专项测什么？",
+        "ans": "长时间运行观察耗电、内存泄漏是否持续增长、操作是否卡顿掉帧",
+        "accept": [
+          "电量",
+          "内存泄漏",
+          "卡顿"
+        ],
+        "blind": "concept",
+        "level": 3
+      },
+      {
+        "id": "M111",
+        "q": "埋点测试测什么？",
+        "ans": "验证埋点事件是否上报、参数是否正确、时机与页面是否正确触发",
+        "accept": [
+          "埋点",
+          "上报",
+          "参数"
+        ],
+        "blind": "concept",
+        "level": 3
+      },
+      {
+        "id": "M112",
+        "q": "灰度发布/AB 测试怎么测？",
+        "ans": "小比例放量到部分用户，监控数据与新老版本差异，再全量",
+        "accept": [
+          "灰度",
+          "放量",
+          "ab",
+          "监控"
+        ],
+        "blind": "concept",
+        "level": 3
+      },
+      {
+        "id": "M113",
+        "q": "App 切后台再回来的测试点？",
+        "ans": "切后台/横竖屏/锁屏后回来，状态与输入是否保留、是否崩溃或重复请求",
+        "accept": [
+          "切后台",
+          "横竖屏",
+          "状态"
+        ],
+        "blind": "concept",
+        "level": 2
+      },
+      {
+        "id": "M114",
+        "q": "App 异常场景有哪些？",
+        "ans": "来电/短信/闹钟打断、断网、低电、存储不足、权限拒绝",
+        "accept": [
+          "来电",
+          "断网",
+          "低电",
+          "权限"
+        ],
+        "blind": "concept",
+        "level": 2
+      },
+      {
+        "id": "M115",
+        "q": "App 稳定性用什么测？",
+        "ans": "monkey 随机事件压测、长时间运行查崩溃、内存泄漏检测工具",
+        "accept": [
+          "monkey",
+          "崩溃",
+          "泄漏"
+        ],
+        "blind": "concept",
+        "level": 3
+      },
+      {
+        "id": "M116",
+        "q": "测试报告包含什么？",
+        "ans": "测试范围、用例执行情况、缺陷统计、遗留问题、风险结论",
+        "accept": [
+          "范围",
+          "缺陷",
+          "遗留",
+          "风险"
+        ],
+        "blind": "concept",
+        "level": 2
+      },
+      {
+        "id": "M117",
+        "q": "一条测试用例的必备要素？",
+        "ans": "编号、标题、前置条件、步骤、数据、预期结果、优先级",
+        "accept": [
+          "编号",
+          "步骤",
+          "预期",
+          "优先级"
+        ],
+        "blind": "concept",
+        "level": 1
+      },
+      {
+        "id": "M118",
+        "q": "缺陷严重程度怎么分？",
+        "ans": "致命/严重/一般/轻微，看对功能影响；与优先级（紧急程度）分开",
+        "accept": [
+          "致命",
+          "严重",
+          "一般",
+          "轻微"
+        ],
+        "blind": "concept",
+        "level": 2
+      },
+      {
+        "id": "M119",
+        "q": "如何保证用例覆盖且不重复？",
+        "ans": "判定表思想先穷举条件组合再挑代表，评审由产品/开发/测试把关",
+        "accept": [
+          "判定表",
+          "穷举",
+          "评审"
+        ],
+        "blind": "concept",
+        "level": 3
+      },
+      {
+        "id": "M120",
+        "q": "什么是探索式测试？",
+        "ans": "边设计边执行边学习，基于经验即时发现，适合需求不全的场景",
+        "accept": [
+          "探索",
+          "边设计",
+          "即时"
+        ],
+        "blind": "concept",
+        "level": 3
+      },
+      {
+        "id": "M121",
+        "q": "测试环境包含什么、为何独立？",
+        "ans": "独立的服务器/数据库/中间件配置，避免与开发共用干扰、保障可复现",
+        "accept": [
+          "独立",
+          "服务器",
+          "数据库",
+          "可复现"
+        ],
+        "blind": "concept",
+        "level": 2
+      },
+      {
+        "id": "M122",
+        "q": "什么是代码覆盖率？",
+        "ans": "被测试执行到的代码占比（行/分支/路径覆盖），衡量白盒测试充分性",
+        "accept": [
+          "覆盖率",
+          "行",
+          "分支"
+        ],
+        "blind": "concept",
+        "level": 3
+      },
+      {
+        "id": "M123",
+        "q": "冒烟测试与回归测试区别？",
+        "ans": "冒烟是测前验证主流程可测；回归是改后重复旧用例验证缺陷已修且无新问题",
+        "accept": [
+          "冒烟",
+          "回归",
+          "主流程",
+          "新问题"
+        ],
+        "blind": "concept",
+        "level": 2
+      },
+      {
+        "id": "M124",
+        "q": "需求评审的目的是什么？",
+        "ans": "尽早发现需求缺陷、统一各方理解、明确可测性，降低后期返工",
+        "accept": [
+          "需求缺陷",
+          "统一",
+          "可测性"
+        ],
+        "blind": "concept",
+        "level": 2
+      },
+      {
+        "id": "M125",
+        "q": "上线后怎么做验证？",
+        "ans": "冒烟核心流程、监控日志与指标、灰度放量、快速回滚预案",
+        "accept": [
+          "冒烟",
+          "监控",
+          "灰度",
+          "回滚"
+        ],
+        "blind": "process",
+        "level": 3
+      }
+    ],
+    "prompt": [
+      {
+        "id": "P01",
+        "type": "scenario",
+        "q": "让模型生成测试用例，输出总是「边界情况要充分」这类空话。第一步该改什么？",
+        "ans": "补被测对象的输入约束、业务规则和判定标准；只加「请详细」不会改变输出质量",
+        "accept": [
+          "输入约束",
+          "业务规则",
+          "判定标准",
+          "约束"
+        ],
+        "blind": "concept",
+        "level": 1
+      },
+      {
+        "id": "P02",
+        "type": "prompt",
+        "q": "同一份 Prompt，模型时而输出表格时而输出列表。怎么让它稳定？",
+        "ans": "在 Prompt 里固定输出结构与字段名，给一条完整示例，并声明「只输出该结构」",
+        "must": [
+          "结构",
+          "示例"
+        ],
+        "accept": [
+          "字段",
+          "只输出"
+        ],
+        "blind": "apply",
+        "level": 2
+      },
+      {
+        "id": "P03",
+        "type": "prompt",
+        "q": "要求模型只输出 JSON 用例数组，结果总带解释和代码块围栏。写出两条修复写法。",
+        "ans": "明确「只输出 JSON，不要解释、不要代码块围栏」，并附一条合法样例说明违规输出作废",
+        "must": [
+          "只输出"
+        ],
+        "accept": [
+          "围栏",
+          "不要解释",
+          "示例"
+        ],
+        "blind": "apply",
+        "level": 3
+      },
+      {
+        "id": "P04",
+        "type": "scenario",
+        "q": "把 temperature 设成 0，为什么仍可能得到不同输出？",
+        "ans": "temperature 只降低采样随机性，不保证完全确定；推理路径、上下文与并行计算差异仍会带来波动",
+        "accept": [
+          "不保证",
+          "上下文",
+          "随机"
+        ],
+        "blind": "concept",
+        "level": 2
+      },
+      {
+        "id": "P05",
+        "type": "scenario",
+        "q": "长规则文档放进对话，多轮之后模型开始忘记规则，怎么处理？",
+        "ans": "规则放系统提示，每轮复述关键约束，把长任务拆成阶段并逐步确认",
+        "accept": [
+          "系统提示",
+          "复述",
+          "拆分"
+        ],
+        "blind": "apply",
+        "level": 3
+      },
+      {
+        "id": "P06",
+        "type": "prompt",
+        "q": "让模型输出用例后自检硬指标（负例占比、边界三位置、一步一操作），Prompt 怎么写更可靠？",
+        "ans": "先给检查清单，要求逐项打勾并输出计数，计数不达标就重写，而不是笼统说「请自检」",
+        "must": [
+          "清单",
+          "计数"
+        ],
+        "accept": [
+          "重写",
+          "打勾"
+        ],
+        "blind": "apply",
+        "level": 3
+      },
+      {
+        "id": "P07",
+        "type": "prompt",
+        "q": "模型偶发编造不存在的接口字段，怎么在 Prompt 层抑制？",
+        "ans": "限定只能使用给定字段清单，缺失就标注「待确认」，明确禁止补全和臆测",
+        "accept": [
+          "待确认",
+          "字段清单",
+          "禁止"
+        ],
+        "blind": "concept",
+        "level": 2
+      },
+      {
+        "id": "P08",
+        "type": "scenario",
+        "q": "few-shot 示例放几条合适、怎么选？",
+        "ans": "2-3 条即可，覆盖正常、边界、异常三类，贴近真实输入，避免同质示例挤占上下文",
+        "accept": [
+          "2-3",
+          "覆盖",
+          "边界"
+        ],
+        "blind": "concept",
+        "level": 2
+      },
+      {
+        "id": "P09",
+        "type": "scenario",
+        "q": "「你是一名资深测试专家」这类角色设定作用有多大？",
+        "ans": "作用有限；真正影响输出的是任务约束、输入信息、判定标准和示例",
+        "accept": [
+          "有限",
+          "约束",
+          "示例"
+        ],
+        "blind": "concept",
+        "level": 1
+      },
+      {
+        "id": "P10",
+        "type": "code",
+        "q": "需要模型先推理再给结论，但下游只接收结构化结果，怎么设计输出？",
+        "ans": "把中间推理写进独立字段（如 analysis），最终字段只放结论，下游只读结论字段",
+        "must": [
+          "字段"
+        ],
+        "accept": [
+          "analysis",
+          "结论",
+          "结构化"
+        ],
+        "blind": "apply",
+        "level": 3
+      }
+    ],
+    "agent": [
+      {
+        "id": "A01",
+        "type": "scenario",
+        "q": "Agent 与聊天机器人的本质区别是什么？",
+        "ans": "Agent 能拆解目标、调用工具改变外部状态，并循环执行到目标达成或触发终止条件",
+        "accept": [
+          "工具",
+          "规划",
+          "状态"
+        ],
+        "blind": "concept",
+        "level": 1
+      },
+      {
+        "id": "A02",
+        "type": "scenario",
+        "q": "ReAct 循环的三段是什么？",
+        "ans": "推理（Reason）→ 行动（Act）→ 观察（Observe），再进入下一轮推理",
+        "accept": [
+          "推理",
+          "行动",
+          "观察"
+        ],
+        "blind": "concept",
+        "level": 2
+      },
+      {
+        "id": "A03",
+        "type": "code",
+        "q": "Agent 调用工具时参数总是缺字段，最先查什么？",
+        "ans": "查工具 schema 的 required 与参数描述，以及运行时是否有参数校验和清晰的错误回传",
+        "must": [
+          "schema"
+        ],
+        "accept": [
+          "required",
+          "描述",
+          "校验"
+        ],
+        "blind": "apply",
+        "level": 2
+      },
+      {
+        "id": "A04",
+        "type": "scenario",
+        "q": "上下文越跑越长，Agent 表现开始下降，有哪些工程手段？",
+        "ans": "摘要压缩历史、按需检索注入、拆分任务、清理无效工具返回",
+        "accept": [
+          "摘要",
+          "检索",
+          "拆分"
+        ],
+        "blind": "apply",
+        "level": 2
+      },
+      {
+        "id": "A05",
+        "type": "scenario",
+        "q": "Agent 疑似陷入死循环，典型信号有哪些？",
+        "ans": "同一工具同一参数反复调用、步数异常增长、每轮输出没有新增信息",
+        "accept": [
+          "重复",
+          "步数",
+          "无新增"
+        ],
+        "blind": "concept",
+        "level": 2
+      },
+      {
+        "id": "A06",
+        "type": "code",
+        "q": "给 Agent 加停止条件，应该写在哪几层？",
+        "ans": "提示层写终止规则，运行时加最大步数、预算和超时的双保险，不能只靠模型自觉",
+        "must": [
+          "最大步数"
+        ],
+        "accept": [
+          "终止",
+          "预算",
+          "超时"
+        ],
+        "blind": "apply",
+        "level": 3
+      },
+      {
+        "id": "A07",
+        "type": "scenario",
+        "q": "单 Agent 和多 Agent 怎么取舍？",
+        "ans": "子任务能独立定义输入输出、可并行才拆；否则协调与排查成本高于收益",
+        "accept": [
+          "独立",
+          "协调",
+          "成本"
+        ],
+        "blind": "concept",
+        "level": 3
+      },
+      {
+        "id": "A08",
+        "type": "scenario",
+        "q": "工具 description 写得含糊会带来什么后果？",
+        "ans": "模型选错工具、参数传错、重复调用；描述要写清用途、边界和入参含义",
+        "accept": [
+          "选错",
+          "参数",
+          "重复"
+        ],
+        "blind": "concept",
+        "level": 2
+      },
+      {
+        "id": "A09",
+        "type": "scenario",
+        "q": "Agent 的「记忆」通常分几类？",
+        "ans": "短期上下文、任务内工作记忆、长期外部存储（文件、数据库、向量库）",
+        "accept": [
+          "上下文",
+          "外部",
+          "存储"
+        ],
+        "blind": "concept",
+        "level": 2
+      },
+      {
+        "id": "A10",
+        "type": "code",
+        "q": "改完 Agent 的提示词或工具，怎么确认没有退化？",
+        "ans": "用固定回归用例集跑基线对比，记录工具调用轨迹与步数，比对结果差异",
+        "must": [
+          "回归"
+        ],
+        "accept": [
+          "轨迹",
+          "基线",
+          "比对"
+        ],
+        "blind": "apply",
+        "level": 3
+      }
+    ],
+    "skill": [
+      {
+        "id": "S01",
+        "type": "scenario",
+        "q": "Skill 和一段 Prompt 模板的本质区别是什么？",
+        "ans": "Skill 是可分发的能力单元：触发描述、执行指令、可选的脚本与资源，按需加载、可被多个引擎复用",
+        "accept": [
+          "触发",
+          "能力",
+          "加载"
+        ],
+        "blind": "concept",
+        "level": 1
+      },
+      {
+        "id": "S02",
+        "type": "prompt",
+        "q": "SKILL.md 的 description 应该写什么？",
+        "ans": "写清何时使用（条件式触发）、能做什么、不做什么（能力边界），避免「测试助手」这类笼统表述",
+        "must": [
+          "触发"
+        ],
+        "accept": [
+          "边界",
+          "条件",
+          "不做什么"
+        ],
+        "blind": "apply",
+        "level": 2
+      },
+      {
+        "id": "S03",
+        "type": "code",
+        "q": "渐进式披露（progressive disclosure）在 Skill 里怎么落地？",
+        "ans": "主文件只放路由和硬约束，细节放 references 按需读取，脚本用 --help 自描述",
+        "must": [
+          "references"
+        ],
+        "accept": [
+          "按需",
+          "主文件",
+          "路由"
+        ],
+        "blind": "apply",
+        "level": 2
+      },
+      {
+        "id": "S04",
+        "type": "scenario",
+        "q": "Skill 里脚本和模型判断怎么分工？",
+        "ans": "可判定、可重复的事（校验、判分、统计、文件操作）交给脚本；语义理解与生成交给模型",
+        "accept": [
+          "脚本",
+          "判定",
+          "语义"
+        ],
+        "blind": "concept",
+        "level": 2
+      },
+      {
+        "id": "S05",
+        "type": "code",
+        "q": "Skill 描述太笼统导致不触发，怎么改？",
+        "ans": "写具体场景和用户原话关键词，用条件式表述，去掉泛称，必要时补反例说明不适用场景",
+        "must": [
+          "关键词"
+        ],
+        "accept": [
+          "场景",
+          "条件",
+          "反例"
+        ],
+        "blind": "apply",
+        "level": 2
+      },
+      {
+        "id": "S06",
+        "type": "scenario",
+        "q": "Skill 升级后行为变了但没人发现，怎么防？",
+        "ans": "固定回归用例、记录版本与变更影响面，升级前跑基线对比，失败样本进回归集",
+        "accept": [
+          "回归",
+          "版本",
+          "影响"
+        ],
+        "blind": "apply",
+        "level": 3
+      },
+      {
+        "id": "S07",
+        "type": "code",
+        "q": "SKILL.md 写到 600 行有什么代价？",
+        "ans": "加载成本上升、关键规则被稀释、维护变难；应把细节拆到 references 并保留主文件路由",
+        "accept": [
+          "加载",
+          "稀释",
+          "拆分"
+        ],
+        "blind": "concept",
+        "level": 2
+      },
+      {
+        "id": "S08",
+        "type": "scenario",
+        "q": "能不能把 API Key 直接写进 Skill？",
+        "ans": "不能；凭据走环境变量或平台配置，示例用占位符，输出要脱敏",
+        "accept": [
+          "环境变量",
+          "占位",
+          "脱敏"
+        ],
+        "blind": "concept",
+        "level": 2
+      },
+      {
+        "id": "S09",
+        "type": "scenario",
+        "q": "一个 Skill 应该只做一件事，还是把相关能力都塞进去？",
+        "ans": "单一职责；多能力用分支路由，否则触发歧义、维护和评审都变难",
+        "accept": [
+          "单一职责",
+          "路由",
+          "歧义"
+        ],
+        "blind": "concept",
+        "level": 2
+      },
+      {
+        "id": "S10",
+        "type": "code",
+        "q": "怎么判断一个需求该不该做成 Skill？",
+        "ans": "高频复用、输入输出可定义、有明确判定标准、能封装成可执行步骤才值得；一次性任务不必",
+        "must": [
+          "复用"
+        ],
+        "accept": [
+          "输入输出",
+          "判定",
+          "可执行"
+        ],
+        "blind": "apply",
+        "level": 3
+      }
+    ],
+    "mcp": [
+      {
+        "id": "C01",
+        "type": "scenario",
+        "q": "MCP 是什么？解决什么问题？",
+        "ans": "模型与外部工具和数据源之间的标准接入协议，客户端-服务器架构，统一工具、资源与提示模板的暴露方式",
+        "accept": [
+          "协议",
+          "工具",
+          "服务器"
+        ],
+        "blind": "concept",
+        "level": 1
+      },
+      {
+        "id": "C02",
+        "type": "scenario",
+        "q": "MCP 的三个核心原语是什么？",
+        "ans": "tools（可调用）、resources（可读取）、prompts（可复用的提示模板）",
+        "must": [
+          "tools"
+        ],
+        "accept": [
+          "resources",
+          "prompts",
+          "资源"
+        ],
+        "blind": "concept",
+        "level": 2
+      },
+      {
+        "id": "C03",
+        "type": "code",
+        "q": "MCP Server 启动失败，排查顺序怎么排？",
+        "ans": "先确认命令存在且可执行，再查参数与环境变量，然后看启动日志与 initialize 握手，最后查权限和路径",
+        "must": [
+          "环境变量"
+        ],
+        "accept": [
+          "日志",
+          "握手",
+          "命令"
+        ],
+        "blind": "apply",
+        "level": 2
+      },
+      {
+        "id": "C04",
+        "type": "code",
+        "q": "stdio 与 http 两种传输怎么选？",
+        "ans": "本地单机、随客户端启动的用 stdio；远程共享、多客户端接入用 http/sse，并做好鉴权",
+        "accept": [
+          "stdio",
+          "http",
+          "本地"
+        ],
+        "blind": "concept",
+        "level": 2
+      },
+      {
+        "id": "C05",
+        "type": "scenario",
+        "q": "工具列表里看不到某个 Server 提供的工具，常见原因？",
+        "ans": "Server 未启动或握手失败、工具被过滤或重名、改了配置未重启客户端",
+        "accept": [
+          "未启动",
+          "没启动",
+          "握手",
+          "重名"
+        ],
+        "blind": "apply",
+        "level": 2
+      },
+      {
+        "id": "C06",
+        "type": "scenario",
+        "q": "MCP 工具调用超时，怎么定位是哪一层的问题？",
+        "ans": "区分连接超时与工具执行超时，看 Server 日志和下游依赖，逐层缩小到网络、Server 或目标服务",
+        "accept": [
+          "连接",
+          "执行",
+          "日志"
+        ],
+        "blind": "apply",
+        "level": 3
+      },
+      {
+        "id": "C07",
+        "type": "scenario",
+        "q": "MCP 与 Function Calling 是什么关系？",
+        "ans": "Function Calling 是模型侧的调用机制，MCP 是工具接入的标准化协议层，两者可叠加使用",
+        "accept": [
+          "模型侧",
+          "协议",
+          "标准化"
+        ],
+        "blind": "concept",
+        "level": 2
+      },
+      {
+        "id": "C08",
+        "type": "code",
+        "q": "怎么做一次 MCP 连通性自检？",
+        "ans": "列出 Server 清单逐个握手，核对工具数量与必填参数，跑一个只读工具验证返回结构",
+        "must": [
+          "握手"
+        ],
+        "accept": [
+          "只读",
+          "清单",
+          "必填"
+        ],
+        "blind": "apply",
+        "level": 3
+      },
+      {
+        "id": "C09",
+        "type": "scenario",
+        "q": "MCP 接入的安全要点有哪些？",
+        "ans": "最小权限、工具白名单、入参校验、凭据不入明文配置、保留调用审计日志",
+        "accept": [
+          "最小权限",
+          "白名单",
+          "校验"
+        ],
+        "blind": "concept",
+        "level": 2
+      },
+      {
+        "id": "C10",
+        "type": "code",
+        "q": "配置里写了 ${API_KEY} 占位符，运行时却报未授权，先查什么？",
+        "ans": "环境变量是否在当前客户端进程可见、变量名是否拼错，改完需重启客户端生效",
+        "accept": [
+          "环境变量",
+          "拼写",
+          "重启"
+        ],
+        "blind": "apply",
+        "level": 3
+      }
+    ],
+    "specialty": [
+      {
+        "id": "T01",
+        "type": "scenario",
+        "q": "测一个大模型问答功能，和传统功能测试最大的不同是什么？",
+        "ans": "输出不确定，需要评测集与阈值来判定，重点关注准确性、一致性、安全性",
+        "accept": [
+          "不确定",
+          "评测",
+          "阈值"
+        ],
+        "blind": "concept",
+        "level": 1
+      },
+      {
+        "id": "T02",
+        "type": "code",
+        "q": "生成式功能的「预期结果」怎么写才可判定？",
+        "ans": "改成可判定断言：必须包含、不得包含、结构合法、引用可溯，必要时加人工 rubric 评分",
+        "must": [
+          "包含"
+        ],
+        "accept": [
+          "断言",
+          "rubric",
+          "结构"
+        ],
+        "blind": "apply",
+        "level": 2
+      },
+      {
+        "id": "T03",
+        "type": "code",
+        "q": "AI 功能的评测集怎么构建？",
+        "ans": "真实流量分层抽样，补边界与对抗样本，人工标注期望结果，固定版本可追溯",
+        "must": [
+          "抽样"
+        ],
+        "accept": [
+          "对抗",
+          "标注",
+          "版本"
+        ],
+        "blind": "apply",
+        "level": 3
+      },
+      {
+        "id": "T04",
+        "type": "scenario",
+        "q": "模型或提示词更新后怎么做回归？",
+        "ans": "固定评测集跑基线对比，看通过率变化和失败样本 diff，低于阈值就回滚",
+        "accept": [
+          "基线",
+          "通过率",
+          "回滚"
+        ],
+        "blind": "apply",
+        "level": 2
+      },
+      {
+        "id": "T05",
+        "type": "scenario",
+        "q": "幻觉怎么测？",
+        "ans": "构造无依据或超出知识范围的问题，检查是否编造事实与来源，验证拒答与引用校验",
+        "accept": [
+          "无依据",
+          "编造",
+          "引用"
+        ],
+        "blind": "concept",
+        "level": 2
+      },
+      {
+        "id": "T06",
+        "type": "code",
+        "q": "Prompt 注入怎么测？",
+        "ans": "在输入里植入「忽略以上指令」等越权指令，检查是否泄露系统提示、越权调用工具、突破输出约束",
+        "must": [
+          "忽略"
+        ],
+        "accept": [
+          "泄露",
+          "越权",
+          "系统提示"
+        ],
+        "blind": "apply",
+        "level": 3
+      },
+      {
+        "id": "T07",
+        "type": "scenario",
+        "q": "Agent 的测试重点和普通 LLM 问答有什么不同？",
+        "ans": "除答案质量外，还要看多步轨迹、工具调用正确性、状态一致性、终止条件、成本与时延",
+        "accept": [
+          "轨迹",
+          "工具",
+          "终止"
+        ],
+        "blind": "concept",
+        "level": 3
+      },
+      {
+        "id": "T08",
+        "type": "code",
+        "q": "RAG 效果怎么评？",
+        "ans": "检索层看命中率与召回，生成层看忠实度与相关性，两层分开评再合成结论",
+        "must": [
+          "检索"
+        ],
+        "accept": [
+          "忠实",
+          "召回",
+          "分开"
+        ],
+        "blind": "apply",
+        "level": 3
+      },
+      {
+        "id": "T09",
+        "type": "scenario",
+        "q": "全量评测成本太高，怎么控制？",
+        "ans": "分层：小样本冒烟、夜间全量回归、高风险场景人工抽检，稳定样本结果做缓存",
+        "accept": [
+          "分层",
+          "冒烟",
+          "抽检"
+        ],
+        "blind": "apply",
+        "level": 2
+      },
+      {
+        "id": "T10",
+        "type": "code",
+        "q": "一份 AI 测试报告至少要包含什么？",
+        "ans": "评测集版本、通过率与阈值、失败样本归类、风险结论、复现方式",
+        "must": [
+          "通过率"
+        ],
+        "accept": [
+          "版本",
+          "归类",
+          "复现"
+        ],
+        "blind": "apply",
+        "level": 2
+      }
+    ]
+  }
+}

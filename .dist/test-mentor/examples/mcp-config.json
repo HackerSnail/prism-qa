@@ -1,0 +1,18 @@
+{
+  "note": "MCP 配置自检样例：包含命令不存在、环境变量缺失、端口不可达、明文凭据四类问题",
+  "mcpServers": {
+    "filesystem": {
+      "command": "node",
+      "args": ["--version"],
+      "env": { "ROOT": "${DEMO_ROOT}" }
+    },
+    "broken-server": {
+      "command": "no-such-binary-xyz",
+      "args": []
+    },
+    "remote-search": {
+      "url": "http://127.0.0.1:1/mcp",
+      "headers": { "Authorization": "Bearer sk-demo1234567890abcdef" }
+    }
+  }
+}
