@@ -1,5 +1,5 @@
 {
-  "name": "test-mentor",
+  "name": "prism-qa",
   "version": "1.5.0",
   "engine": "claude-code",
   "cases": [

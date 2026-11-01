@@ -1,4 +1,4 @@
-# test-mentor · AI Test Engineer Growth Companion
+# prism-qa · AI Test Engineer Growth Companion
 
 [简体中文](README.md) | [繁體中文](README.zh-TW.md) | [English](README.en.md) | [Français](README.fr.md) | [Deutsch](README.de.md)
 
@@ -20,7 +20,7 @@ Judgement, scoring, comparison and connectivity checks all really run in scripts
 ## Directory layout
 
 ```
-test-mentor/
+prism-qa/
 ├── SKILL.md                 # Main file: routing + hard constraints
 ├── data/
 │   ├── questions.json       # 247 questions: 50 five-layer + 72 infrastructure + 125 fundamentals

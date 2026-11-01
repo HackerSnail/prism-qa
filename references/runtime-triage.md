@@ -15,7 +15,7 @@
 
 ```json
 {
-  "name": "test-mentor",
+  "name": "prism-qa",
   "version": "1.5.0",
   "engine": "claude-code",
   "cases": [{ "id": "C1", "input": "给登录框设计用例", "output": "..." }]

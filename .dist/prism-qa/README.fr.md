@@ -1,4 +1,4 @@
-# test-mentor · Compagnon de progression de l'ingénieur test IA
+# prism-qa · Compagnon de progression de l'ingénieur test IA
 
 [简体中文](README.md) | [繁體中文](README.zh-TW.md) | [English](README.en.md) | [Français](README.fr.md) | [Deutsch](README.de.md)
 
@@ -20,7 +20,7 @@ La notation, l'évaluation, la comparaison et les contrôles de connectivité so
 ## Arborescence
 
 ```
-test-mentor/
+prism-qa/
 ├── SKILL.md                 # Fichier principal : routage + contraintes strictes
 ├── data/
 │   ├── questions.json       # 247 questions : 50 cinq couches + 72 infrastructure + 125 fondamentaux

@@ -1,4 +1,4 @@
-# test-mentor · AI 测试工程师成长伴侣
+# prism-qa · AI 测试工程师成长伴侣
 
 [简体中文](README.md) | [繁體中文](README.zh-TW.md) | [English](README.en.md) | [Français](README.fr.md) | [Deutsch](README.de.md)
 
@@ -20,7 +20,7 @@
 ## 目录结构
 
 ```
-test-mentor/
+prism-qa/
 ├── SKILL.md                 # 主文件：路由 + 硬约束
 ├── data/
 │   ├── questions.json       # 247 题：五层 50 + 基础设施 72 + 基本功 125

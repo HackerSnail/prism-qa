@@ -1,4 +1,4 @@
-# test-mentor · Begleiter für die Weiterentwicklung zum KI-Testingenieur
+# prism-qa · Begleiter für die Weiterentwicklung zum KI-Testingenieur
 
 [简体中文](README.md) | [繁體中文](README.zh-TW.md) | [English](README.en.md) | [Français](README.fr.md) | [Deutsch](README.de.md)
 
@@ -20,7 +20,7 @@ Bewertung, Benotung, Vergleich und Konnektivitätsprüfungen werden tatsächlich
 ## Verzeichnisstruktur
 
 ```
-test-mentor/
+prism-qa/
 ├── SKILL.md                 # Hauptdatei: Routing + harte Vorgaben
 ├── data/
 │   ├── questions.json       # 247 Fragen: 50 fünf Schichten + 72 Infrastruktur + 125 Grundlagen

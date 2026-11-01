@@ -1,5 +1,5 @@
 ---
-name: test-mentor
+name: prism-qa
 description: AI 测试工程师成长伴侣。用于正在从传统测试转型 AI 测试的工程师：想做能力诊断、摸底自测，要补 Prompt 工程与 Agent 理解，要学 Skill 封装与 MCP 协议，要评审 AI 生成的用例并拿到覆盖率评分，要识别缺陷模式并沉淀 Bug 知识库，要排查 Skill 行为漂移、跨引擎不一致、MCP 调用失败、Agent 死循环时使用。只做 Agent 与 Skill 基础设施层排障，应用崩溃与内存泄漏等问题交给鸿蒙 DFX Skills（互补）。触发词：AI 测试转型、Skill 工程师、MCP 协议、Agent 排障、Skill 漂移、用例评审、用例质量门禁、缺陷沉淀、能力雷达、自测。发布标签：#小红书Skill创新赛 #2026华为开发者大赛
 argument-hint: <自测 | 评审 用例.json | 排障 配置/轨迹 | 记录 bug.json>
 ---
@@ -26,13 +26,13 @@ diagnose.js   learning-paths   case-gate.js    agent-diag.js
 
 ## 入口路由
 
-| 用户说什么 | 走哪条 | 命令 | 输出物 |
-| :--- | :--- | :--- | :--- |
-| 自测、摸底、我该补什么、能力诊断 | 一、诊断 | `node scripts/diagnose.js` | 五层雷达 + 差距分析 + 学习路径 + 能力名片 |
-| 下一步学什么、给条路线 | 二、学习 | 读 `data/learning-paths.json` | 按 band 给出的动作与资源 |
-| 评审这份用例、能不能提测、覆盖率多少 | 三、用例门禁 | `node scripts/case-gate.js` | 评分 + 五维覆盖 + 遗漏补全 + 风险分级 |
-| 写 Bug、这属于什么缺陷、以前出过吗 | 四、缺陷沉淀 | `node scripts/defect-kb.js` | 结构化 Bug + 模式 + 历史关联 |
-| Skill 升级后不对了、两个引擎结果不一样、MCP 连不上、Agent 卡住 | 五、运行时排障 | `node scripts/agent-diag.js` | 分类 + 根因 + 修复建议 + 回归步骤 |
+| 用户说什么                                                     | 走哪条         | 命令                          | 输出物                                    |
+| :------------------------------------------------------------- | :------------- | :---------------------------- | :---------------------------------------- |
+| 自测、摸底、我该补什么、能力诊断                               | 一、诊断       | `node scripts/diagnose.js`    | 五层雷达 + 差距分析 + 学习路径 + 能力名片 |
+| 下一步学什么、给条路线                                         | 二、学习       | 读 `data/learning-paths.json` | 按 band 给出的动作与资源                  |
+| 评审这份用例、能不能提测、覆盖率多少                           | 三、用例门禁   | `node scripts/case-gate.js`   | 评分 + 五维覆盖 + 遗漏补全 + 风险分级     |
+| 写 Bug、这属于什么缺陷、以前出过吗                             | 四、缺陷沉淀   | `node scripts/defect-kb.js`   | 结构化 Bug + 模式 + 历史关联              |
+| Skill 升级后不对了、两个引擎结果不一样、MCP 连不上、Agent 卡住 | 五、运行时排障 | `node scripts/agent-diag.js`  | 分类 + 根因 + 修复建议 + 回归步骤         |
 
 ## 一、诊断：五层能力雷达
 
@@ -72,13 +72,13 @@ node scripts/case-gate.js --file cases.json --json     # 机器可读，符合 s
 
 输入是 `schema/testcase.schema.json` 的数组或 `{ "cases": [...] }`。检查共 **23 项、五大维度**：
 
-| 维度 | 检查点 | 关键项（未过即阻断） |
-| :--- | :--- | :--- |
-| 功能覆盖 | 主流程、负例+边界 ≥40%、权限角色、状态连续、模块覆盖 | 负例+边界 ≥40% |
-| 数据设计 | 边界三位置、空值 null、超长特殊字符、类型格式非法、数据可构造 | 边界三位置 |
-| 可执行性 | 前置条件、一步一操作、预期可判定、用例独立、编号标题唯一 | 一步一操作、预期可判定 |
-| 集成与契约 | 错误码 message、幂等重试、超时限流、上下游联动 | — |
-| 非功能 | 性能并发、安全、兼容、可观测性 | — |
+| 维度       | 检查点                                                        | 关键项（未过即阻断）   |
+| :--------- | :------------------------------------------------------------ | :--------------------- |
+| 功能覆盖   | 主流程、负例+边界 ≥40%、权限角色、状态连续、模块覆盖          | 负例+边界 ≥40%         |
+| 数据设计   | 边界三位置、空值 null、超长特殊字符、类型格式非法、数据可构造 | 边界三位置             |
+| 可执行性   | 前置条件、一步一操作、预期可判定、用例独立、编号标题唯一      | 一步一操作、预期可判定 |
+| 集成与契约 | 错误码 message、幂等重试、超时限流、上下游联动                | —                      |
+| 非功能     | 性能并发、安全、兼容、可观测性                                | —                      |
 
 **判定**：评分 = 命中权重 / 总权重 × 100；评分 ≥ `--min` **且** 关键项全过才 `pass`，退出码 0，否则退出码 1（可接 CI）。风险分级：评分 <50、负例边界不足、或 ≥2 个关键项未过 → 高风险。
 
@@ -108,12 +108,12 @@ node scripts/agent-diag.js mcp    --config mcp.json --timeout 2000
 node scripts/agent-diag.js loop   --trace trace.jsonl --max-steps 40 --repeat 3
 ```
 
-| 模式 | 输入 | 真跑什么 | 判定 |
-| :--- | :--- | :--- | :--- |
-| drift | 两版 Skill 运行结果（cases: id/output） | 字符 bigram 相似度、缺失用例 | 相似度 <0.85 记为漂移 |
-| engine | 两个引擎的 pass/output/toolCalls | 判定差异、输出差异、工具选择差异 | 任一项不一致即报告 |
-| mcp | `mcpServers` 配置 | 启动命令是否存在、`${VAR}` 是否注入、远程端口 TCP 可达、明文凭据扫描 | 失败/告警分级 |
-| loop | JSONL 轨迹（step/tool/args/output） | 步数、同工具同参数重复、A→B→A→B、输出无进展、错误重试 | 命中即报告 |
+| 模式   | 输入                                    | 真跑什么                                                             | 判定                  |
+| :----- | :-------------------------------------- | :------------------------------------------------------------------- | :-------------------- |
+| drift  | 两版 Skill 运行结果（cases: id/output） | 字符 bigram 相似度、缺失用例                                         | 相似度 <0.85 记为漂移 |
+| engine | 两个引擎的 pass/output/toolCalls        | 判定差异、输出差异、工具选择差异                                     | 任一项不一致即报告    |
+| mcp    | `mcpServers` 配置                       | 启动命令是否存在、`${VAR}` 是否注入、远程端口 TCP 可达、明文凭据扫描 | 失败/告警分级         |
+| loop   | JSONL 轨迹（step/tool/args/output）     | 步数、同工具同参数重复、A→B→A→B、输出无进展、错误重试                | 命中即报告            |
 
 输出固定四段：**问题分类 → 根因定位 → 修复建议 → 回归验证步骤**，可用 `--json` 接入流水线；退出码 0 无问题、1 有问题。所有结论必须附证据（步骤号、相似度、端口、变量名），不凭感觉下判断。
 
@@ -121,22 +121,22 @@ node scripts/agent-diag.js loop   --trace trace.jsonl --max-steps 40 --repeat 3
 
 ## 数据与脚本
 
-| 文件 | 作用 |
-| :--- | :--- |
-| `data/questions.json` | 247 题：五层 50 + 基础设施 72 + 基本功 125 |
-| `data/capabilities.json` | 五层权重、等级、采样与阈值 |
-| `data/learning-paths.json` | 按层 × band 的学习动作与资源 |
-| `data/defect-patterns.json` | 15 个缺陷模式 |
-| `data/defects.jsonl` | 缺陷知识库（追加写入） |
-| `data/progress.json` | 诊断历史与错题池（运行时生成） |
-| `scripts/diagnose.js` | 诊断、雷达、路径、能力名片 |
-| `scripts/case-gate.js` | 用例质量门禁 |
-| `scripts/agent-diag.js` | 四类运行时排障 |
-| `scripts/defect-kb.js` | 缺陷沉淀与关联 |
-| `references/capability-model.md` | 五层模型、判分口径、月度更新 SOP |
-| `references/case-gate-rules.md` | 23 项检查的判定口径与反例 |
-| `references/runtime-triage.md` | 四类排障的取证与误判说明 |
-| `schema/*.json` | 用例、评审报告、诊断报告、缺陷记录、排障报告 |
+| 文件                             | 作用                                         |
+| :------------------------------- | :------------------------------------------- |
+| `data/questions.json`            | 247 题：五层 50 + 基础设施 72 + 基本功 125   |
+| `data/capabilities.json`         | 五层权重、等级、采样与阈值                   |
+| `data/learning-paths.json`       | 按层 × band 的学习动作与资源                 |
+| `data/defect-patterns.json`      | 15 个缺陷模式                                |
+| `data/defects.jsonl`             | 缺陷知识库（追加写入）                       |
+| `data/progress.json`             | 诊断历史与错题池（运行时生成）               |
+| `scripts/diagnose.js`            | 诊断、雷达、路径、能力名片                   |
+| `scripts/case-gate.js`           | 用例质量门禁                                 |
+| `scripts/agent-diag.js`          | 四类运行时排障                               |
+| `scripts/defect-kb.js`           | 缺陷沉淀与关联                               |
+| `references/capability-model.md` | 五层模型、判分口径、月度更新 SOP             |
+| `references/case-gate-rules.md`  | 23 项检查的判定口径与反例                    |
+| `references/runtime-triage.md`   | 四类排障的取证与误判说明                     |
+| `schema/*.json`                  | 用例、评审报告、诊断报告、缺陷记录、排障报告 |
 
 ## 快速验收（评审可复制执行）
 
@@ -160,11 +160,11 @@ node scripts/defect-kb.js record --file examples/bug.json --dry-run
 
 根目录是**华为完整版**（SKILL.md + scripts + references 三件套结构），保留全部工程能力；另外两版按平台约束裁剪：
 
-| 版本 | 位置 | 形态 | 面向 |
-| :--- | :--- | :--- | :--- |
-| 华为完整版 | 根目录 | 三件套 + 可执行脚本 | 华为开发者大赛智能体创新赛 |
+| 版本         | 位置                            | 形态                                 | 面向                                |
+| :----------- | :------------------------------ | :----------------------------------- | :---------------------------------- |
+| 华为完整版   | 根目录                          | 三件套 + 可执行脚本                  | 华为开发者大赛智能体创新赛          |
 | 小红书精简版 | `versions/xiaohongshu/SKILL.md` | 纯 Markdown ≤500 行、无 YAML、无脚本 | 小红书 Skill 创新赛（安全审核赛道） |
-| 高校教育版 | `versions/edu/SKILL.md` | 零门槛、侧重学习路径、砍企业级排障 | 鸿蒙高校创新赛 |
+| 高校教育版   | `versions/edu/SKILL.md`         | 零门槛、侧重学习路径、砍企业级排障   | 鸿蒙高校创新赛                      |
 
 三版共用同一套五层模型、检查清单与缺陷模式库；差异只在外层形态。发布标签固定 `#小红书Skill创新赛 #2026华为开发者大赛`。
 
