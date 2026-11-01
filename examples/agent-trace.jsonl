@@ -1,0 +1,13 @@
+{"step":1,"tool":"search","args":{"q":"order 1001"},"output":"找到 1 条订单记录"}
+{"step":2,"tool":"get_order","args":{"id":"1001"},"output":"status=pending"}
+{"step":3,"tool":"search","args":{"q":"order 1001"},"output":"找到 1 条订单记录"}
+{"step":4,"tool":"search","args":{"q":"order 1001"},"output":"找到 1 条订单记录"}
+{"step":5,"tool":"get_order","args":{"id":"1001"},"output":"status=pending"}
+{"step":6,"tool":"get_order","args":{"id":"1001"},"output":"status=pending"}
+{"step":7,"tool":"search","args":{"q":"order 1001"},"output":"找到 1 条订单记录"}
+{"step":8,"tool":"get_order","args":{"id":"1001"},"output":"status=pending"}
+{"step":9,"tool":"search","args":{"q":"order 1001"},"output":"找到 1 条订单记录"}
+{"step":10,"tool":"get_order","args":{"id":"1001"},"output":"status=pending"}
+{"step":11,"tool":"search","args":{"q":"order 1001"},"output":"无结果","error":"timeout"}
+{"step":12,"tool":"search","args":{"q":"order 1001"},"output":"无结果","error":"timeout"}
+{"step":13,"tool":"search","args":{"q":"order 1001"},"output":"无结果","error":"timeout"}

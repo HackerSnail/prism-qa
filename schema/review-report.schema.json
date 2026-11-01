@@ -1,0 +1,83 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "CaseGateReport",
+  "description": "用例质量门禁输出：覆盖率评分、遗漏场景补全建议、风险分级",
+  "type": "object",
+  "required": ["verdict", "score", "risk", "minScore", "totalCases", "coverage", "checks", "gaps"],
+  "properties": {
+    "verdict": { "type": "string", "enum": ["pass", "fail"], "description": "是否通过门禁" },
+    "score": { "type": "number", "minimum": 0, "maximum": 100, "description": "五维加权覆盖率评分" },
+    "risk": { "type": "string", "enum": ["高", "中", "低"], "description": "风险分级" },
+    "minScore": { "type": "number", "description": "通过阈值，默认 70" },
+    "totalCases": { "type": "integer", "minimum": 0 },
+    "coverage": {
+      "type": "array",
+      "description": "五维覆盖率",
+      "items": {
+        "type": "object",
+        "required": ["dimension", "score"],
+        "properties": {
+          "dimension": { "type": "string", "enum": ["功能覆盖", "数据设计", "可执行性", "集成与契约", "非功能"] },
+          "score": { "type": "number", "minimum": 0, "maximum": 100 }
+        }
+      }
+    },
+    "criticalFailed": {
+      "type": "array",
+      "description": "未通过的关键项，任一项未通过即判定不通过",
+      "items": { "type": "string" }
+    },
+    "checks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "dimension", "name", "weight", "hit"],
+        "properties": {
+          "id": { "type": "string" },
+          "dimension": { "type": "string" },
+          "name": { "type": "string" },
+          "weight": { "type": "number" },
+          "critical": { "type": "boolean" },
+          "hit": { "type": "boolean" },
+          "suggest": { "type": "string" }
+        }
+      }
+    },
+    "gaps": {
+      "type": "array",
+      "description": "遗漏场景与补全建议",
+      "items": {
+        "type": "object",
+        "required": ["dimension", "check", "suggestion"],
+        "properties": {
+          "dimension": { "type": "string" },
+          "check": { "type": "string" },
+          "suggestion": { "type": "string" }
+        }
+      }
+    },
+    "missingScenarios": { "type": "array", "items": { "type": "string" } },
+    "nextActions": { "type": "array", "items": { "type": "string" } },
+    "stats": {
+      "type": "object",
+      "properties": {
+        "total": { "type": "integer" },
+        "modules": { "type": "array", "items": { "type": "string" } },
+        "negativeOrBoundaryRatio": { "type": "number" },
+        "avgSteps": { "type": "number" },
+        "priorityDist": { "type": "object" }
+      }
+    },
+    "fieldIssues": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "field": { "type": "string" },
+          "issue": { "type": "string" }
+        }
+      }
+    }
+  }
+}

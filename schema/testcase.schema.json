@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "TestCase",
+  "description": "用例质量门禁的输入结构：被测系统生成的用例表，交给 scripts/case-gate.js 评审",
+  "type": "object",
+  "required": ["id", "module", "title", "precondition", "steps", "data", "expected", "actual", "priority", "type", "method"],
+  "properties": {
+    "id": { "type": "string", "description": "用例编号" },
+    "module": { "type": "string", "description": "所属模块" },
+    "title": { "type": "string", "description": "用例标题" },
+    "precondition": { "type": "string", "description": "前置条件" },
+    "steps": { "type": "array", "items": { "type": "string" }, "description": "测试步骤，一步一个操作" },
+    "data": { "type": "string", "description": "测试数据" },
+    "expected": { "type": "string", "description": "预期结果" },
+    "actual": { "type": "string", "description": "实际结果，未执行留空" },
+    "priority": { "type": "string", "enum": ["P0", "P1", "P2", "P3"], "description": "优先级" },
+    "type": { "type": "string", "description": "用例类型" },
+    "method": {
+      "type": "string",
+      "enum": ["等价类划分", "边界值", "错误推测", "判定表", "因果图", "正交表", "场景法", "状态图", "大纲法"],
+      "description": "用例设计方法"
+    }
+  }
+}

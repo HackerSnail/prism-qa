@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "DefectRecord",
+  "description": "结构化缺陷记录：必填字段用于校验，patternIds 由缺陷模式库自动识别写入",
+  "type": "object",
+  "required": ["title", "module", "version", "severity", "priority", "environment", "steps", "actual", "expected", "frequency"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^BUG-\\d{8}-\\d{3}$", "description": "缺陷编号，记录时自动生成" },
+    "title": { "type": "string", "description": "标题：模块 + 场景 + 操作 + 错误" },
+    "module": { "type": "string" },
+    "version": { "type": "string" },
+    "severity": { "type": "string", "enum": ["致命", "严重", "一般", "轻微"] },
+    "priority": { "type": "string", "enum": ["高", "中", "低"] },
+    "environment": { "type": "string", "description": "环境与前置条件" },
+    "steps": { "type": "array", "items": { "type": "string" }, "minItems": 1, "description": "复现步骤，一步一个操作" },
+    "actual": { "type": "string", "description": "实际结果，只填真实执行过的事实" },
+    "expected": { "type": "string", "description": "期望结果，可判定" },
+    "frequency": { "type": "string", "description": "出现频率，必现/偶现（约 n/10）" },
+    "patternIds": {
+      "type": "array",
+      "description": "命中的缺陷模式编号",
+      "items": { "type": "string", "pattern": "^DP-\\d{2}$" }
+    },
+    "category": { "type": "string", "description": "取首个命中模式的分类，未命中为未分类" },
+    "date": { "type": "string", "description": "入库日期 YYYY-MM-DD" }
+  }
+}

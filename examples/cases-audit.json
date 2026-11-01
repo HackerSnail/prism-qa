@@ -1,0 +1,96 @@
+{
+  "note": "AI 生成用例的典型提交样本（故意保留缺口），用 node scripts/case-gate.js --file examples/cases-audit.json 复现评审报告",
+  "cases": [
+    {
+      "id": "TC-A1",
+      "module": "登录",
+      "title": "正确账号密码登录",
+      "precondition": "",
+      "steps": ["输入账号密码，并且点击登录"],
+      "data": "任意",
+      "expected": "登录成功",
+      "actual": "",
+      "priority": "P0",
+      "type": "功能",
+      "method": "等价类划分"
+    },
+    {
+      "id": "TC-A2",
+      "module": "登录",
+      "title": "密码错误登录失败",
+      "precondition": "",
+      "steps": ["输入错误密码", "点击登录"],
+      "data": "密码=123456",
+      "expected": "提示密码错误",
+      "actual": "",
+      "priority": "P1",
+      "type": "异常",
+      "method": "错误推测"
+    },
+    {
+      "id": "TC-A3",
+      "module": "商品",
+      "title": "商品列表翻页",
+      "precondition": "",
+      "steps": ["打开商品列表然后点击下一页"],
+      "data": "第2页",
+      "expected": "显示第二页商品",
+      "actual": "",
+      "priority": "P1",
+      "type": "功能",
+      "method": "场景法"
+    },
+    {
+      "id": "TC-A4",
+      "module": "商品",
+      "title": "商品详情展示",
+      "precondition": "",
+      "steps": ["点击商品"],
+      "data": "任意",
+      "expected": "显示商品信息",
+      "actual": "",
+      "priority": "P2",
+      "type": "功能",
+      "method": "场景法"
+    },
+    {
+      "id": "TC-A4",
+      "module": "订单",
+      "title": "提交订单",
+      "precondition": "",
+      "steps": ["选择商品", "点击下单", "支付"],
+      "data": "任意",
+      "expected": "下单成功",
+      "actual": "",
+      "priority": "P0",
+      "type": "功能",
+      "method": "场景法"
+    },
+    {
+      "id": "TC-A6",
+      "module": "订单",
+      "title": "取消订单",
+      "precondition": "",
+      "steps": ["进入订单详情", "点击取消订单", "确认取消"],
+      "data": "订单号 1001",
+      "expected": "订单变为已取消",
+      "actual": "",
+      "priority": "P2",
+      "type": "功能",
+      "method": "场景法"
+    },
+    {
+      "id": "TC-A7",
+      "module": "权限",
+      "title": "未登录越权访问后台接口",
+      "precondition": "未登录",
+      "steps": ["直接请求后台接口"],
+      "data": "无 token",
+      "expected": "返回 403 错误码 FORBIDDEN",
+      "actual": "",
+      "priority": "P1",
+      "type": "安全",
+      "method": "错误推测"
+    }
+  ]
+}
